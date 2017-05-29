@@ -8,7 +8,7 @@ namespace NorthCinema.Domain.Models
 {
     class Film
     {
-        public Film(int filmId ,string filmName, int lengthOfFilm, int ageLimit, int price)
+        public Film(int filmId ,string filmName, int lengthOfFilm, int ageLimit, double price)
         {
             FilmId = filmId;
             FilmName = filmName;
@@ -20,6 +20,6 @@ namespace NorthCinema.Domain.Models
         public string FilmName { get; private set; }
         public int LengthOfFilm { get; private set; }
         public int AgeLimit { get; private set; }
-        public int Price { get; private set; }
+        public double Price { get; private set; }
     }
 }

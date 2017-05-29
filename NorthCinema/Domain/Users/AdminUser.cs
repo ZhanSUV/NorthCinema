@@ -9,8 +9,8 @@ namespace NorthCinema.Domain.Users
     public class AdminUser : AuthorisedUser
     {
         public AdminUser(int userId, string lastName, string firstName,
-            string middleName, string userStatus)
-            : base(userId, lastName, firstName, middleName, userStatus)
+            string secondName, string userStatus, string login, string password)
+            : base(userId, lastName, firstName, secondName, userStatus, login, password)
         {
 
         }

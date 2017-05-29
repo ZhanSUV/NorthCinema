@@ -9,8 +9,12 @@ namespace NorthCinema.Infrastructure
     class CheckingAuthorization
     {
         private ReadingFromDateBase reading;
-        private string login;
-        private string password;
+        public int userId;
+        public string lastName;
+        public string firstName;
+        public string secondName;
+        public string login;
+        public string password;
         public string status;
         public CheckingAuthorization(ReadingFromDateBase reading, string login, string password)
         {
@@ -18,32 +22,42 @@ namespace NorthCinema.Infrastructure
             this.login = login;
             this.password = password;
         }
-        public void CheckAuthorization()
+        public string CheckAuthorization()
         {
-            //с базы данных столбцы считать
-            /*
             foreach (var i in reading.adminList)
             {
-                if ((login == i.login) && (password == i.password))
+                if ((login == i.Login) && (password == i.Password))
                 {
-                    status = i.statusUser;
+                    userId = i.UserId;
+                    lastName = i.LastName;
+                    firstName = i.FirstName;
+                    secondName = i.SecondName;
+                    status = i.UserStatus;
                 }
             }
             foreach (var i in reading.cashierList)
             {
-                if ((login == i.login) && (password == i.password))
+                if ((login == i.Login) && (password == i.Password))
                 {
-                    status = i.statusUser;
+                    userId = i.UserId;
+                    lastName = i.LastName;
+                    firstName = i.FirstName;
+                    secondName = i.SecondName;
+                    status = i.UserStatus;
                 }
             }
             foreach (var i in reading.visitorList)
             {
-                if ((login == i.login) && (password == i.password))
+                if ((login == i.Login) && (password == i.Password))
                 {
-                    status = i.statusUser;
+                    userId = i.UserId;
+                    lastName = i.LastName;
+                    firstName = i.FirstName;
+                    secondName = i.SecondName;
+                    status = i.UserStatus;
                 }
             }
-            */
+            return status;
         }
     }
 }
