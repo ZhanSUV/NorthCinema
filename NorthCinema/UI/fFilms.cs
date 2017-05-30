@@ -15,6 +15,8 @@ namespace NorthCinema.UI
 {
     public partial class fAdminFilms : Form
     {
+        ListOfFilms films;
+        BindingSource sourceData = new BindingSource();
         public fAdminFilms(object user)
         {
             InitializeComponent();
@@ -22,15 +24,17 @@ namespace NorthCinema.UI
             {
                 //класс, считывающий данные из бд и это в List засунуть; 
                 ReadingFromDateBase reading = new ReadingFromDateBase();
-                ListOfFilms films = reading.ReadFilms();
-                dataGridViewFilm.DataSource = films.Films;
+                films = reading.ReadFilms();
+                sourceData.DataSource = films.Films;
+                dataGridViewFilm.DataSource = sourceData;
             }
             else
             {
                 //класс, считывающий данные из бд и это в List засунуть; 
                 ReadingFromDateBase reading = new ReadingFromDateBase();
-                ListOfFilms films = reading.ReadFilms();
-                dataGridViewFilm.DataSource = films.Films;
+                films = reading.ReadFilms();
+                sourceData.DataSource = films.Films;
+                dataGridViewFilm.DataSource = sourceData;
                 dataGridViewFilm.Columns[0].Visible = false;
                 AddButton.Visible = false;
                 UpdateButton.Visible = false;
@@ -40,6 +44,16 @@ namespace NorthCinema.UI
         private void Exit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            //sourceData.DataSource = films.Films;
+            films.AddFilmInList(4, NameFilmInput.Text, Convert.ToInt32(FilmLengthInput.Text),
+                 Convert.ToInt32(AgeLimitInput.Text), Convert.ToInt32(PriceInput.Text));
+            sourceData.ResetBindings(false);
+
+            // не работает так: dataGridViewFilm.Rows.Add(NameFilmInput.Text, FilmLengthInput.Text, AgeLimitInput.Text, PriceInput.Text);
         }
     }
 }
