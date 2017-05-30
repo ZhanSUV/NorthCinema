@@ -26,5 +26,10 @@ namespace NorthCinema.UI
             console.ShowDialog();
             this.Show();
         }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

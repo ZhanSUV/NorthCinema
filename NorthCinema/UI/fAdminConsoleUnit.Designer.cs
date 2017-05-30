@@ -54,6 +54,7 @@
             this.Session.TabIndex = 1;
             this.Session.Text = "Сеансы";
             this.Session.UseVisualStyleBackColor = true;
+            this.Session.Click += new System.EventHandler(this.Session_Click);
             // 
             // Hall
             // 

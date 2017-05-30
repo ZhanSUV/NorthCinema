@@ -77,6 +77,72 @@ namespace NorthCinema.Infrastructure
             ListOfFilms films = new ListOfFilms(filmList);
             return films;
         }
+        public ListOfSessions ReadSessions()
+        {
+            Hall hall;
+            Film film;
+            int filmId;
+            int hallId;
+            List<PlaceInHall> places = new List<PlaceInHall>();
+            List<Session> sessionList = new List<Session>();
+            ListOfSessions sessions = new ListOfSessions(sessionList);
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                SqlCommand command = new SqlCommand(
+                "SELECT SESSION_ID, HALL_ID, FILM_ID, DATE_SESSION, TIME_SESSION FROM [SESSIONS];",
+                connectToDateBase);
+                connectToDateBase.Open();
+                SqlDataReader readerSession = command.ExecuteReader();
+                if (readerSession.HasRows)
+                {
+                    while (readerSession.Read())
+                    {
+                        hallId = readerSession.GetInt32(1);
+                        filmId = readerSession.GetInt32(2);
+                        SqlCommand readFilm = new SqlCommand(
+                        "SELECT FILM_ID, NAME_FILM, LENGTH_FILM, AGE_LIMIT, TICKET_PRICE FROM [FILMS] WHERE FILM_ID = " + filmId + ";",
+                        connectToDateBase);
+                        connectToDateBase.Open();
+                        SqlDataReader readerFilm = readFilm.ExecuteReader();
+                        film = new Film(readerFilm.GetInt32(0), readerFilm.GetString(1), readerFilm.GetInt32(2),
+                                readerFilm.GetInt32(3), readerFilm.GetInt32(4));
+                        readerFilm.Close();
 
+                        SqlCommand readHall = new SqlCommand(
+                       "SELECT HALL_ID, NAME_HALL FROM [HALLS] WHERE HALL_ID = " + hallId + ";",
+                       connectToDateBase);
+                        connectToDateBase.Open();
+                        SqlDataReader readerHall = readFilm.ExecuteReader();
+                        hall = new Hall(readerHall.GetInt32(0), readerHall.GetString(1));
+                        SqlCommand readPlaces = new SqlCommand(
+                        "SELECT PLACE_ID, HALL_ID, ROW_PLACES, PLACE FROM [PLACESINHALLS] WHERE HALL_ID = " + hallId + ";",
+                        connectToDateBase);
+                        connectToDateBase.Open();
+                        SqlDataReader readerPlaces = readFilm.ExecuteReader();
+                        if (readerPlaces.HasRows)
+                        {
+                            while (readerPlaces.Read())
+                            {
+                                PlaceInHall place = new PlaceInHall(readerPlaces.GetInt32(0), hall, readerPlaces.GetInt32(2), readerPlaces.GetInt32(3));
+                                places.Add(place);
+                            }
+                        }
+                        readerPlaces.Close();
+                        // здесь еще нужен запрос из PLACESINHALLS
+                        //hall = new Hall()
+                        readerHall.Close();
+                        // вот тут я сломался, придется несколько запросов делать, чтобы объект Session создать
+                        Session session = new Session(readerSession.GetInt32(0), film, hall, readerSession.GetDateTime(3), readerSession.GetDateTime(4));
+                        //filmList.Add(film);
+                        sessionList.Add(session);
+                    }
+                }
+                readerSession.Close();
+                return sessions;
+            }
+            //ListOfFilms films = new ListOfFilms(filmList);
+            //return films;
+        }
     }
 }

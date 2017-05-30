@@ -15,7 +15,7 @@ namespace NorthCinema.UI
 {
     public partial class fAdminFilms : Form
     {
-        ListOfFilms films;
+        ListOfFilms filmsList;
         BindingSource sourceData = new BindingSource();
         int indexRow;
         public fAdminFilms(object user)
@@ -25,8 +25,8 @@ namespace NorthCinema.UI
             {
                 //класс, считывающий данные из бд и это в List засунуть; 
                 ReadingFromDateBase reading = new ReadingFromDateBase();
-                films = reading.ReadFilms();
-                sourceData.DataSource = films.Films;
+                filmsList = reading.ReadFilms();
+                sourceData.DataSource = filmsList.Films;
                 dataGridViewFilm.DataSource = sourceData;
                 dataGridViewFilm.Columns[0].Visible = false;
             }
@@ -34,8 +34,8 @@ namespace NorthCinema.UI
             {
                 //класс, считывающий данные из бд и это в List засунуть; 
                 ReadingFromDateBase reading = new ReadingFromDateBase();
-                films = reading.ReadFilms();
-                sourceData.DataSource = films.Films;
+                filmsList = reading.ReadFilms();
+                sourceData.DataSource = filmsList.Films;
                 dataGridViewFilm.DataSource = sourceData;
                 dataGridViewFilm.Columns[0].Visible = false;
                 AddButton.Visible = false;
@@ -51,10 +51,10 @@ namespace NorthCinema.UI
         private void AddButton_Click(object sender, EventArgs e)
         {
             //sourceData.DataSource = films.Films;
-            films.AddFilmInList(films.Films[films.Films.Count()-1].FilmId + 1, NameFilmInput.Text, Convert.ToInt32(FilmLengthInput.Text),
+            filmsList.AddFilmInList(filmsList.Films[filmsList.Films.Count()-1].FilmId + 1, NameFilmInput.Text, Convert.ToInt32(FilmLengthInput.Text),
                  Convert.ToInt32(AgeLimitInput.Text), Convert.ToInt32(PriceInput.Text));
             WritingInDatabase writing = new WritingInDatabase();
-            writing.WriteInDatabase(films.Films.Last());
+            writing.WriteInDatabase(filmsList.Films.Last());
             sourceData.ResetBindings(false); //подтверждает изменения
             // не работает так: dataGridViewFilm.Rows.Add(NameFilmInput.Text, FilmLengthInput.Text, AgeLimitInput.Text, PriceInput.Text);
         }
@@ -72,20 +72,20 @@ namespace NorthCinema.UI
 
         private void UpdateButton_Click(object sender, EventArgs e)
         {
-            films.Films[indexRow].FilmName = NameFilmInput.Text;
-            films.Films[indexRow].LengthOfFilm= Convert.ToInt32(FilmLengthInput.Text);
-            films.Films[indexRow].AgeLimit = Convert.ToInt32(AgeLimitInput.Text);
-            films.Films[indexRow].Price = Convert.ToInt32(PriceInput.Text);
+            filmsList.Films[indexRow].FilmName = NameFilmInput.Text;
+            filmsList.Films[indexRow].LengthOfFilm= Convert.ToInt32(FilmLengthInput.Text);
+            filmsList.Films[indexRow].AgeLimit = Convert.ToInt32(AgeLimitInput.Text);
+            filmsList.Films[indexRow].Price = Convert.ToInt32(PriceInput.Text);
             UpdatingDataBase updating = new UpdatingDataBase();
-            updating.UpdateInDatabase(films.Films[indexRow]);
+            updating.UpdateInDatabase(filmsList.Films[indexRow]);
             sourceData.ResetBindings(false); //подтверждает изменения
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             DeletingFromDateBase deleting = new DeletingFromDateBase();
-            deleting.DeleteFromDatabase(films.Films[indexRow]);
-            films.Films.RemoveAt(indexRow);
+            deleting.DeleteFromDatabase(filmsList.Films[indexRow]);
+            filmsList.Films.RemoveAt(indexRow);
             sourceData.ResetBindings(false); //подтверждает изменения
         }
     }

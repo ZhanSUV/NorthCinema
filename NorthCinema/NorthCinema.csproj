@@ -82,6 +82,12 @@
     <Compile Include="UI\fFilms.Designer.cs">
       <DependentUpon>fFilms.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\fSessions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\fSessions.Designer.cs">
+      <DependentUpon>fSessions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Тесты\Domain\Country.cs" />
     <Compile Include="Тесты\Domain\Employee.cs" />
     <Compile Include="Тесты\Domain\Format.cs" />
@@ -157,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\fMain Menu.resx">
       <DependentUpon>fMain Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\fSessions.resx">
+      <DependentUpon>fSessions.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\NorthCinema.Domain.Models.ListOfFilms.datasource" />
     <None Include="Properties\Settings.settings">

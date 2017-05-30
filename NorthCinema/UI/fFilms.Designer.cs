@@ -50,6 +50,7 @@
             this.dataGridViewFilm.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewFilm.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewFilm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewFilm.ColumnHeadersVisible = false;
             this.dataGridViewFilm.Location = new System.Drawing.Point(21, 176);
             this.dataGridViewFilm.Name = "dataGridViewFilm";
             this.dataGridViewFilm.Size = new System.Drawing.Size(520, 166);
