@@ -51,7 +51,7 @@ namespace NorthCinema.UI
         private void AddButton_Click(object sender, EventArgs e)
         {
             //sourceData.DataSource = films.Films;
-            films.AddFilmInList(4, NameFilmInput.Text, Convert.ToInt32(FilmLengthInput.Text),
+            films.AddFilmInList(films.Films[films.Films.Count()-1].FilmId + 1, NameFilmInput.Text, Convert.ToInt32(FilmLengthInput.Text),
                  Convert.ToInt32(AgeLimitInput.Text), Convert.ToInt32(PriceInput.Text));
             WritingInDatabase writing = new WritingInDatabase();
             writing.WriteInDatabase(films.Films.Last());
@@ -76,9 +76,17 @@ namespace NorthCinema.UI
             films.Films[indexRow].LengthOfFilm= Convert.ToInt32(FilmLengthInput.Text);
             films.Films[indexRow].AgeLimit = Convert.ToInt32(AgeLimitInput.Text);
             films.Films[indexRow].Price = Convert.ToInt32(PriceInput.Text);
-            UpdateDataBase updating = new UpdateDataBase();
+            UpdatingDataBase updating = new UpdatingDataBase();
             updating.UpdateInDatabase(films.Films[indexRow]);
-            sourceData.ResetBindings(false);
+            sourceData.ResetBindings(false); //подтверждает изменения
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            DeletingFromDateBase deleting = new DeletingFromDateBase();
+            deleting.DeleteFromDatabase(films.Films[indexRow]);
+            films.Films.RemoveAt(indexRow);
+            sourceData.ResetBindings(false); //подтверждает изменения
         }
     }
 }

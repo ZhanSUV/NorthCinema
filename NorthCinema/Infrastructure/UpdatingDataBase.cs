@@ -8,7 +8,7 @@ using NorthCinema.Domain.Models;
 
 namespace NorthCinema.Infrastructure
 {
-    class UpdateDataBase
+    class UpdatingDataBase
     {
         private string pathOfDataBase = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Жанат\documents\visual studio 2015\Projects\NorthCinema\NorthCinema\Cinema.mdf;Integrated Security = True";
         public void UpdateInDatabase(Film film)
