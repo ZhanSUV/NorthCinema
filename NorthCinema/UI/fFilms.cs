@@ -27,6 +27,7 @@ namespace NorthCinema.UI
                 films = reading.ReadFilms();
                 sourceData.DataSource = films.Films;
                 dataGridViewFilm.DataSource = sourceData;
+                dataGridViewFilm.Columns[0].Visible = false;
             }
             else
             {
@@ -51,8 +52,9 @@ namespace NorthCinema.UI
             //sourceData.DataSource = films.Films;
             films.AddFilmInList(4, NameFilmInput.Text, Convert.ToInt32(FilmLengthInput.Text),
                  Convert.ToInt32(AgeLimitInput.Text), Convert.ToInt32(PriceInput.Text));
+            WritingInDatabase writing = new WritingInDatabase();
+            writing.WriteInDatabase(films.Films.Last());
             sourceData.ResetBindings(false);
-
             // не работает так: dataGridViewFilm.Rows.Add(NameFilmInput.Text, FilmLengthInput.Text, AgeLimitInput.Text, PriceInput.Text);
         }
     }
