@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\Logining.cs" />
+    <Compile Include="Infrastructure\UpdateDataBase.cs" />
     <Compile Include="Infrastructure\WritingInDatabase.cs" />
     <Compile Include="UI\fAdminConsoleUnit.cs">
       <SubType>Form</SubType>

@@ -47,11 +47,14 @@
             // dataGridViewFilm
             // 
             this.dataGridViewFilm.AllowUserToOrderColumns = true;
+            this.dataGridViewFilm.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewFilm.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewFilm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewFilm.Location = new System.Drawing.Point(21, 176);
             this.dataGridViewFilm.Name = "dataGridViewFilm";
             this.dataGridViewFilm.Size = new System.Drawing.Size(520, 166);
             this.dataGridViewFilm.TabIndex = 0;
+            this.dataGridViewFilm.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewFilm_CellClick);
             // 
             // AddButton
             // 
@@ -71,6 +74,7 @@
             this.UpdateButton.TabIndex = 2;
             this.UpdateButton.Text = "Обновить";
             this.UpdateButton.UseVisualStyleBackColor = true;
+            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
             // DeleteButton
             // 

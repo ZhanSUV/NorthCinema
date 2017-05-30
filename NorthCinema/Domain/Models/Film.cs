@@ -16,10 +16,10 @@ namespace NorthCinema.Domain.Models
             AgeLimit = ageLimit;
             Price = price;
         }
-        public int FilmId { get; private set; }
-        public string FilmName { get; private set; }
-        public int LengthOfFilm { get; private set; }
-        public int AgeLimit { get; private set; }
-        public double Price { get; private set; }
+        public int FilmId { get; set; }
+        public string FilmName { get; set; }
+        public int LengthOfFilm { get; set; }
+        public int AgeLimit { get; set; }
+        public double Price { get; set; }
     }
 }
