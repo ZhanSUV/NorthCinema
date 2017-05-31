@@ -20,11 +20,11 @@ namespace NorthCinema.Domain
             Password = password;
         }
         public int UserId { get; private set; }
-        public string LastName { get; private set; }
-        public string FirstName { get; private set; }
-        public string SecondName { get; private set; }
-        public string UserStatus { get; private set; }
-        public string Login { get; private set; }
-        public string Password { get; private set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string SecondName { get; set; }
+        public string UserStatus { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
     }
 }

@@ -16,6 +16,8 @@ namespace NorthCinema.UI
     public partial class fSessions : Form
     {
         ListOfSessions sessionsList;
+        List<int> filmIds = new List<int>();
+        List<int> hallIds = new List<int>();    
         BindingSource sourceData = new BindingSource();
         int indexRow;
         public fSessions(object user)
@@ -26,9 +28,15 @@ namespace NorthCinema.UI
                 //класс, считывающий данные из бд и это в List засунуть; 
                 ReadingFromDateBase reading = new ReadingFromDateBase();
                 sessionsList = reading.ReadSessions();
+                foreach (var i in sessionsList.Sessions)
+                {
+                    filmIds.Add(i.FilmSession.FilmId);
+                    hallIds.Add(i.HallSession.HallId);
+                    
+                }
                 sourceData.DataSource = sessionsList.Sessions;
                 dataGridViewSessions.DataSource = sourceData;
-                dataGridViewSessions.Columns[0].Visible = false;
+                //dataGridViewSessions.Columns[0].Visible = false;
             }
             else
             {

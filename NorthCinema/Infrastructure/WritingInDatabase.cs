@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using NorthCinema.Domain.Models;
+using NorthCinema.Domain.Users;
 
 namespace NorthCinema.Infrastructure
 {
@@ -25,6 +26,39 @@ namespace NorthCinema.Infrastructure
                 command.Parameters.AddWithValue("@LENGTH_FILM", film.LengthOfFilm);
                 command.Parameters.AddWithValue("@AGE_LIMIT", film.AgeLimit);
                 command.Parameters.AddWithValue("@TICKET_PRICE", film.Price);
+                command.ExecuteNonQuery();
+            }
+        }
+        public void WriteInDatabase(Hall hall)
+        {
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                SqlCommand command = new SqlCommand(
+                ("INSERT INTO [HALLS] (NAME_HALL)" +
+                "VALUES (@NAME_HALL);"),
+                connectToDateBase);
+                command.Connection.Open();
+                command.Parameters.AddWithValue("@NAME_HALL", hall.HallName);
+                command.ExecuteNonQuery();
+            }
+        }
+        public void WriteInDatabase(CashierUser cashier)
+        {
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                SqlCommand command = new SqlCommand(
+                ("INSERT INTO [USERS] (USER_LOGIN, USER_PASSWORD, FIRST_NAME, LAST_NAME, SECOND_NAME, STATUS_USER)" +
+                "VALUES (@USER_LOGIN, @USER_PASSWORD, @FIRST_NAME, @LAST_NAME, @SECOND_NAME, @STATUS_USER);"),
+                connectToDateBase);
+                command.Connection.Open();
+                command.Parameters.AddWithValue("@USER_LOGIN", cashier.Login);
+                command.Parameters.AddWithValue("@USER_PASSWORD", cashier.Password);
+                command.Parameters.AddWithValue("@FIRST_NAME", cashier.FirstName);
+                command.Parameters.AddWithValue("@LAST_NAME", cashier.LastName);
+                command.Parameters.AddWithValue("@SECOND_NAME", cashier.SecondName);
+                command.Parameters.AddWithValue("@STATUS_USER", cashier.UserStatus);
                 command.ExecuteNonQuery();
             }
         }

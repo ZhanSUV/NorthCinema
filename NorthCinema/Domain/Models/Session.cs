@@ -8,7 +8,7 @@ namespace NorthCinema.Domain.Models
 {
     class Session
     {
-        public Session(int sessionId,Film filmSession, Hall hallSession, DateTime dateSession, DateTime timeSession)
+        public Session(int sessionId,Film filmSession, Hall hallSession, DateTime dateSession, TimeSpan timeSession)
         {
             SessionId = sessionId;
             FilmSession = filmSession;
@@ -20,6 +20,6 @@ namespace NorthCinema.Domain.Models
         public Film FilmSession { get; private set; }
         public Hall HallSession { get; private set; }
         public DateTime DateSession { get; private set; }
-        public DateTime TimeSession { get; private set; }
+        public TimeSpan TimeSession { get; private set; }
     }
 }

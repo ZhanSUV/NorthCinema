@@ -76,11 +76,23 @@
     <Compile Include="UI\fCashierConsoleUnit.Designer.cs">
       <DependentUpon>fCashierConsoleUnit.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\fCashiers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\fCashiers.Designer.cs">
+      <DependentUpon>fCashiers.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\fFilms.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\fFilms.Designer.cs">
       <DependentUpon>fFilms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\fHalls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\fHalls.Designer.cs">
+      <DependentUpon>fHalls.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\fSessions.cs">
       <SubType>Form</SubType>
@@ -155,11 +167,17 @@
     <EmbeddedResource Include="UI\fCashierConsoleUnit.resx">
       <DependentUpon>fCashierConsoleUnit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\fCashiers.resx">
+      <DependentUpon>fCashiers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\fFilms.resx">
       <DependentUpon>fFilms.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\fAuthorization.resx">
       <DependentUpon>fAuthorization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\fHalls.resx">
+      <DependentUpon>fHalls.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\fMain Menu.resx">
       <DependentUpon>fMain Menu.cs</DependentUpon>

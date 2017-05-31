@@ -40,5 +40,21 @@ namespace NorthCinema.UI
             console.ShowDialog();
             this.Show();
         }
+
+        private void Hall_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            fHalls console = new fHalls(admin);
+            console.ShowDialog();
+            this.Show();
+        }
+
+        private void Cashier_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            fCashiers console = new fCashiers(admin);
+            console.ShowDialog();
+            this.Show();
+        }
     }
 }

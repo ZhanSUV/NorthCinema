@@ -64,6 +64,7 @@
             this.Hall.TabIndex = 2;
             this.Hall.Text = "Кинозалы";
             this.Hall.UseVisualStyleBackColor = true;
+            this.Hall.Click += new System.EventHandler(this.Hall_Click);
             // 
             // Cashier
             // 
@@ -73,6 +74,7 @@
             this.Cashier.TabIndex = 3;
             this.Cashier.Text = "Кассиры";
             this.Cashier.UseVisualStyleBackColor = true;
+            this.Cashier.Click += new System.EventHandler(this.Cashier_Click);
             // 
             // Percent
             // 

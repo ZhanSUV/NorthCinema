@@ -13,7 +13,7 @@ namespace NorthCinema.Domain.Models
             HallId = hallId;
             HallName = hallName;
         }
-        public int HallId { get; private set; }
-        public string HallName { get; private set; }
+        public int HallId { get; set; }
+        public string HallName { get; set; }
     }
 }

@@ -46,6 +46,7 @@
             // 
             // dataGridViewSessions
             // 
+            this.dataGridViewSessions.AllowUserToOrderColumns = true;
             this.dataGridViewSessions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewSessions.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewSessions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -186,8 +187,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dataGridViewSessions;
         private System.Windows.Forms.Label HallIdLabel;
         private System.Windows.Forms.Label FilmIdLabel;
         private System.Windows.Forms.Label DateLabel;
@@ -200,5 +199,6 @@
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.Button UpdateButton;
         private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.DataGridView dataGridViewSessions;
     }
 }
