@@ -54,6 +54,7 @@
             this.dataGridViewSessions.Name = "dataGridViewSessions";
             this.dataGridViewSessions.Size = new System.Drawing.Size(503, 205);
             this.dataGridViewSessions.TabIndex = 0;
+            this.dataGridViewSessions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSessions_CellContentClick);
             // 
             // HallIdLabel
             // 

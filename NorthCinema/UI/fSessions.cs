@@ -17,7 +17,8 @@ namespace NorthCinema.UI
     {
         ListOfSessions sessionsList;
         List<int> filmIds = new List<int>();
-        List<int> hallIds = new List<int>();    
+        List<int> hallIds = new List<int>();
+        object number;  
         BindingSource sourceData = new BindingSource();
         int indexRow;
         public fSessions(object user)
@@ -34,18 +35,72 @@ namespace NorthCinema.UI
                     hallIds.Add(i.HallSession.HallId);
                     
                 }
+                // столбцы не поменять, нужно искать способ
+                /*
                 sourceData.DataSource = sessionsList.Sessions;
                 dataGridViewSessions.DataSource = sourceData;
-                //dataGridViewSessions.Columns[0].Visible = false;
+                for (int i = 0; i < sourceData.Count; i++)
+                {
+                    dataGridViewSessions[2, i].Value = filmIds[i];
+                }
+                dataGridViewSessions.Refresh();
+                dataGridViewSessions.Columns[0].Visible = false;*/
+
+
+                //плохая реализация
+                dataGridViewSessions.ColumnCount = 5;
+                dataGridViewSessions.Columns[0].Name = "Session ID";
+                dataGridViewSessions.Columns[0].Visible = false;
+                dataGridViewSessions.Columns[1].Name = "Film ID";
+                dataGridViewSessions.Columns[2].Name = "Hall ID";
+                dataGridViewSessions.Columns[3].Name = "Date";
+                dataGridViewSessions.Columns[4].Name = "Time";
+                dataGridViewSessions.RowCount = sessionsList.Sessions.Count;
+                for (int i = 0; i < dataGridViewSessions.ColumnCount; i++)
+                {
+                    for (int j = 0; j < sessionsList.Sessions.Count; j++)
+                    {
+                        if (i == 0)
+                        {
+                            dataGridViewSessions[i, j].Value = sessionsList.Sessions[j].SessionId;
+                        }
+                        else if (i == 1)
+                        {
+                            dataGridViewSessions[i, j].Value = sessionsList.Sessions[j].FilmSession.FilmName;
+                        }
+                        else if (i == 2)
+                        {
+                            dataGridViewSessions[i, j].Value = sessionsList.Sessions[j].HallSession.HallName;
+                        }
+                        else if (i == 3)
+                        {
+                            dataGridViewSessions[i, j].Value = sessionsList.Sessions[j].DateSession.Date.ToShortDateString();
+                        }
+                        else
+                        {
+                            dataGridViewSessions[i, j].Value = sessionsList.Sessions[j].TimeSession;
+                        }
+                    }
+                }
             }
             else
             {
                 //класс, считывающий данные из бд и это в List засунуть; 
                 ReadingFromDateBase reading = new ReadingFromDateBase();
                 sessionsList = reading.ReadSessions();
+                foreach (var i in sessionsList.Sessions)
+                {
+                    filmIds.Add(i.FilmSession.FilmId);
+                    hallIds.Add(i.HallSession.HallId);
+
+                }
                 sourceData.DataSource = sessionsList.Sessions;
                 dataGridViewSessions.DataSource = sourceData;
-                dataGridViewSessions.Columns[0].Visible = false;
+                for (int i = 0; i < sourceData.Count; i++)
+                {
+                    dataGridViewSessions[2, i].Value = filmIds[i];
+                }
+                dataGridViewSessions.Refresh();
                 AddButton.Visible = false;
                 UpdateButton.Visible = false;
                 DeleteButton.Visible = false;
@@ -55,6 +110,11 @@ namespace NorthCinema.UI
         private void ExitButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dataGridViewSessions_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
