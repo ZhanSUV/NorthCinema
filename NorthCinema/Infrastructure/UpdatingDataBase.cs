@@ -89,5 +89,24 @@ namespace NorthCinema.Infrastructure
                 command.ExecuteNonQuery();
             }
         }
+        public void UpdateInDatabase(Percent percent)
+        {
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                SqlCommand command = new SqlCommand(
+                ("UPDATE [PERCENTAGES]" +
+                "SET DISCOUNT_MARKUP = @DISCOUNT_MARKUP, DESCRIPTION = @DESCRIPTION," +
+                "PERCENT1 = @PERCENT1 "
+                + "WHERE @PERCENT_ID = PERCENT_ID;"),
+                connectToDateBase);
+                command.Connection.Open();
+                command.Parameters.AddWithValue("@PERCENT_ID", percent.PercentId);
+                command.Parameters.AddWithValue("@DISCOUNT_MARKUP", percent.PercentType);
+                command.Parameters.AddWithValue("@DESCRIPTION", percent.PercentDescription);
+                command.Parameters.AddWithValue("@PERCENT1", percent.PercentValue);
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }

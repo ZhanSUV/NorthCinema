@@ -123,10 +123,10 @@ namespace NorthCinema.UI
             dataGridViewSessions.ColumnCount = 5;
             dataGridViewSessions.Columns[0].Name = "Session ID";
             dataGridViewSessions.Columns[0].Visible = false;
-            dataGridViewSessions.Columns[1].Name = "Film ID";
-            dataGridViewSessions.Columns[2].Name = "Hall ID";
-            dataGridViewSessions.Columns[3].Name = "Date";
-            dataGridViewSessions.Columns[4].Name = "Time";
+            dataGridViewSessions.Columns[1].Name = "Фильм";
+            dataGridViewSessions.Columns[2].Name = "Залл";
+            dataGridViewSessions.Columns[3].Name = "Дата";
+            dataGridViewSessions.Columns[4].Name = "Время";
             dataGridViewSessions.RowCount = sessionsList.Sessions.Count;
             for (int i = 0; i < dataGridViewSessions.ColumnCount; i++)
             {

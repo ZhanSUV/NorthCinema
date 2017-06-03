@@ -50,9 +50,10 @@
             this.dataGridViewFilm.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewFilm.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewFilm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewFilm.ColumnHeadersVisible = false;
             this.dataGridViewFilm.Location = new System.Drawing.Point(21, 176);
+            this.dataGridViewFilm.MultiSelect = false;
             this.dataGridViewFilm.Name = "dataGridViewFilm";
+            this.dataGridViewFilm.ReadOnly = true;
             this.dataGridViewFilm.Size = new System.Drawing.Size(520, 166);
             this.dataGridViewFilm.TabIndex = 0;
             this.dataGridViewFilm.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewFilm_CellClick);

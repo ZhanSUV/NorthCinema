@@ -130,7 +130,9 @@
             // 
             this.dataGridViewCashiers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCashiers.Location = new System.Drawing.Point(44, 146);
+            this.dataGridViewCashiers.MultiSelect = false;
             this.dataGridViewCashiers.Name = "dataGridViewCashiers";
+            this.dataGridViewCashiers.ReadOnly = true;
             this.dataGridViewCashiers.Size = new System.Drawing.Size(383, 196);
             this.dataGridViewCashiers.TabIndex = 10;
             this.dataGridViewCashiers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCashiers_CellClick);

@@ -29,6 +29,7 @@ namespace NorthCinema.UI
                 sourceData.DataSource = hallsList.Halls;
                 dataGridViewHalls.DataSource = sourceData;
                 dataGridViewHalls.Columns[0].Visible = false;
+                dataGridViewHalls.Columns[1].HeaderText = "Название";
             }
             else
             {

@@ -11,9 +11,9 @@ namespace NorthCinema.Infrastructure
 {
     class ReadingFromDateBase
     {
-        public readonly List<Domain.Users.AdminUser> adminList = new List<Domain.Users.AdminUser>();
-        public readonly List<Domain.Users.CashierUser> cashierList = new List<Domain.Users.CashierUser>();
-        public readonly List<Domain.Users.VisitorUser> visitorList = new List<Domain.Users.VisitorUser>();
+        public readonly List<AdminUser> adminList = new List<AdminUser>();
+        public readonly List<CashierUser> cashierList = new List<CashierUser>();
+        public readonly List<VisitorUser> visitorList = new List<VisitorUser>();
         private string pathOfDataBase = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Жанат\documents\visual studio 2015\Projects\NorthCinema\NorthCinema\Cinema.mdf;Integrated Security = True";
         public void ReadFromDateBase()
         {
@@ -142,6 +142,30 @@ namespace NorthCinema.Infrastructure
             }
             ListOfHalls halls = new ListOfHalls(hallsList);
             return halls;
+        }
+        public ListOfPercents ReadPercentages()
+        {
+            List<Percent> percentsList = new List<Percent>();
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                SqlCommand command = new SqlCommand(
+                "SELECT PERCENT_ID, DISCOUNT_MARKUP, DESCRIPTION, PERCENT1 FROM [PERCENTAGES];",
+                connectToDateBase);
+                connectToDateBase.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Percent percent = new Percent(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3));
+                        percentsList.Add(percent);
+                    }
+                }
+                reader.Close();
+            }
+            ListOfPercents percents = new ListOfPercents(percentsList);
+            return percents;
         }
     }
 }

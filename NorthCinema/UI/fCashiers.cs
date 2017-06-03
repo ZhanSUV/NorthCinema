@@ -30,7 +30,12 @@ namespace NorthCinema.UI
                 sourceData.DataSource = cashiersList.Cashiers;
                 dataGridViewCashiers.DataSource = sourceData;
                 dataGridViewCashiers.Columns[0].Visible = false;
+                dataGridViewCashiers.Columns[1].HeaderText = "Фамилия";
+                dataGridViewCashiers.Columns[2].HeaderText = "Имя";
+                dataGridViewCashiers.Columns[3].HeaderText = "Отчество";
                 dataGridViewCashiers.Columns[4].Visible = false;
+                dataGridViewCashiers.Columns[5].HeaderText = "Логин";
+                dataGridViewCashiers.Columns[6].HeaderText = "Пароль";
             }
             else
             {

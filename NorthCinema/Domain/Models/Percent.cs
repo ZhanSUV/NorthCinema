@@ -8,18 +8,16 @@ namespace NorthCinema.Domain.Models
 {
     class Percent
     {
-        public Percent(int percentId, string percentName, string percentDescription, string percentType, int percentValue)
+        public Percent(int percentId, string percentType, string percentDescription, int percentValue)
         {
             PercentId = percentId;
-            PercentName = percentName;
-            PercentDescription = percentDescription;
             PercentType = percentType;
+            PercentDescription = percentDescription;
             PercentValue = percentValue;
         }
-        public int PercentId { get; private set; }
-        public string PercentName { get; private set; }
-        public string PercentDescription { get; private set; }
-        public string PercentType { get; private set; }
-        public int PercentValue { get; private set; }
+        public int PercentId { get; set; }
+        public string PercentType { get; set; }
+        public string PercentDescription { get; set; }
+        public int PercentValue { get; set; }
     }
 }

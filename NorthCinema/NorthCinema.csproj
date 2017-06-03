@@ -94,6 +94,12 @@
     <Compile Include="UI\fHalls.Designer.cs">
       <DependentUpon>fHalls.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\fProcents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\fProcents.Designer.cs">
+      <DependentUpon>fProcents.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\fSessions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\fMain Menu.resx">
       <DependentUpon>fMain Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\fProcents.resx">
+      <DependentUpon>fProcents.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\fSessions.resx">
       <DependentUpon>fSessions.cs</DependentUpon>

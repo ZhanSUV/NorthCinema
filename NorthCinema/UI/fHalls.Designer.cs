@@ -58,7 +58,9 @@
             // 
             this.dataGridViewHalls.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewHalls.Location = new System.Drawing.Point(49, 69);
+            this.dataGridViewHalls.MultiSelect = false;
             this.dataGridViewHalls.Name = "dataGridViewHalls";
+            this.dataGridViewHalls.ReadOnly = true;
             this.dataGridViewHalls.Size = new System.Drawing.Size(366, 159);
             this.dataGridViewHalls.TabIndex = 4;
             this.dataGridViewHalls.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewHalls_CellClick);

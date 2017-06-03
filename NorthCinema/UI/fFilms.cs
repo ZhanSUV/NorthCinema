@@ -29,6 +29,10 @@ namespace NorthCinema.UI
                 sourceData.DataSource = filmsList.Films;
                 dataGridViewFilm.DataSource = sourceData;
                 dataGridViewFilm.Columns[0].Visible = false;
+                dataGridViewFilm.Columns[1].HeaderText = "Название";
+                dataGridViewFilm.Columns[2].HeaderText = "Длительность";
+                dataGridViewFilm.Columns[3].HeaderText = "Ограничение";
+                dataGridViewFilm.Columns[4].HeaderText = "Цена";
             }
             else
             {

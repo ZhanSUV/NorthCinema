@@ -84,6 +84,7 @@
             this.Percent.TabIndex = 4;
             this.Percent.Text = "Проценты";
             this.Percent.UseVisualStyleBackColor = true;
+            this.Percent.Click += new System.EventHandler(this.Percent_Click);
             // 
             // Exit
             // 
