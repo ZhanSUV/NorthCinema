@@ -34,13 +34,13 @@
             this.DateLabel = new System.Windows.Forms.Label();
             this.HallComboBox = new System.Windows.Forms.ComboBox();
             this.FilmComboBox = new System.Windows.Forms.ComboBox();
-            this.DateComboBox = new System.Windows.Forms.ComboBox();
-            this.TimeComboBox = new System.Windows.Forms.ComboBox();
             this.TimeLabel = new System.Windows.Forms.Label();
             this.AddButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.UpdateButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
+            this.DateInputPicker = new System.Windows.Forms.DateTimePicker();
+            this.TimeInputPicker = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSessions)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,10 +51,12 @@
             this.dataGridViewSessions.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewSessions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewSessions.Location = new System.Drawing.Point(21, 139);
+            this.dataGridViewSessions.MultiSelect = false;
             this.dataGridViewSessions.Name = "dataGridViewSessions";
+            this.dataGridViewSessions.ReadOnly = true;
             this.dataGridViewSessions.Size = new System.Drawing.Size(503, 205);
             this.dataGridViewSessions.TabIndex = 0;
-            this.dataGridViewSessions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSessions_CellContentClick);
+            this.dataGridViewSessions.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSessions_CellClick);
             // 
             // HallIdLabel
             // 
@@ -99,22 +101,6 @@
             this.FilmComboBox.Size = new System.Drawing.Size(170, 21);
             this.FilmComboBox.TabIndex = 10;
             // 
-            // DateComboBox
-            // 
-            this.DateComboBox.FormattingEnabled = true;
-            this.DateComboBox.Location = new System.Drawing.Point(91, 76);
-            this.DateComboBox.Name = "DateComboBox";
-            this.DateComboBox.Size = new System.Drawing.Size(170, 21);
-            this.DateComboBox.TabIndex = 11;
-            // 
-            // TimeComboBox
-            // 
-            this.TimeComboBox.FormattingEnabled = true;
-            this.TimeComboBox.Location = new System.Drawing.Point(91, 103);
-            this.TimeComboBox.Name = "TimeComboBox";
-            this.TimeComboBox.Size = new System.Drawing.Size(170, 21);
-            this.TimeComboBox.TabIndex = 12;
-            // 
             // TimeLabel
             // 
             this.TimeLabel.AutoSize = true;
@@ -132,6 +118,7 @@
             this.AddButton.TabIndex = 14;
             this.AddButton.Text = "Добавить";
             this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // DeleteButton
             // 
@@ -141,6 +128,7 @@
             this.DeleteButton.TabIndex = 15;
             this.DeleteButton.Text = "Удалить";
             this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // UpdateButton
             // 
@@ -150,6 +138,7 @@
             this.UpdateButton.TabIndex = 16;
             this.UpdateButton.Text = "Обновить";
             this.UpdateButton.UseVisualStyleBackColor = true;
+            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
             // ExitButton
             // 
@@ -161,18 +150,41 @@
             this.ExitButton.UseVisualStyleBackColor = true;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
+            // DateInputPicker
+            // 
+            this.DateInputPicker.CustomFormat = "";
+            this.DateInputPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DateInputPicker.Location = new System.Drawing.Point(91, 76);
+            this.DateInputPicker.MinDate = new System.DateTime(2016, 8, 17, 0, 0, 0, 0);
+            this.DateInputPicker.Name = "DateInputPicker";
+            this.DateInputPicker.Size = new System.Drawing.Size(200, 20);
+            this.DateInputPicker.TabIndex = 18;
+            this.DateInputPicker.Value = new System.DateTime(2017, 6, 3, 12, 52, 45, 0);
+            // 
+            // TimeInputPicker
+            // 
+            this.TimeInputPicker.Cursor = System.Windows.Forms.Cursors.Default;
+            this.TimeInputPicker.CustomFormat = "HH:mm";
+            this.TimeInputPicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.TimeInputPicker.Location = new System.Drawing.Point(91, 106);
+            this.TimeInputPicker.Name = "TimeInputPicker";
+            this.TimeInputPicker.RightToLeftLayout = true;
+            this.TimeInputPicker.ShowUpDown = true;
+            this.TimeInputPicker.Size = new System.Drawing.Size(200, 20);
+            this.TimeInputPicker.TabIndex = 19;
+            // 
             // fSessions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(545, 432);
+            this.Controls.Add(this.TimeInputPicker);
+            this.Controls.Add(this.DateInputPicker);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.UpdateButton);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.TimeLabel);
-            this.Controls.Add(this.TimeComboBox);
-            this.Controls.Add(this.DateComboBox);
             this.Controls.Add(this.FilmComboBox);
             this.Controls.Add(this.HallComboBox);
             this.Controls.Add(this.DateLabel);
@@ -193,13 +205,13 @@
         private System.Windows.Forms.Label DateLabel;
         private System.Windows.Forms.ComboBox HallComboBox;
         private System.Windows.Forms.ComboBox FilmComboBox;
-        private System.Windows.Forms.ComboBox DateComboBox;
-        private System.Windows.Forms.ComboBox TimeComboBox;
         private System.Windows.Forms.Label TimeLabel;
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.Button UpdateButton;
         private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.DataGridView dataGridViewSessions;
+        private System.Windows.Forms.DateTimePicker DateInputPicker;
+        private System.Windows.Forms.DateTimePicker TimeInputPicker;
     }
 }

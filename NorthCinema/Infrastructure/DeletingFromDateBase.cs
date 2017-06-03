@@ -51,5 +51,18 @@ namespace NorthCinema.Infrastructure
                 command.ExecuteNonQuery();
             }
         }
+        public void DeleteFromDatabase(Session session)
+        {
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                SqlCommand command = new SqlCommand(
+                ("DELETE FROM [SESSIONS] WHERE @SESSION_ID = SESSION_ID;"),
+                connectToDateBase);
+                command.Connection.Open();
+                command.Parameters.AddWithValue("@SESSION_ID", session.SessionId);
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }

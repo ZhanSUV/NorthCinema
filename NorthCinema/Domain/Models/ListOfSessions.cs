@@ -12,7 +12,7 @@ namespace NorthCinema.Domain.Models
         {
             Sessions = sessions;
         }
-        public List<Session> Sessions { get; private set; }
+        public List<Session> Sessions { get; set; }
         public static void AddSession<T>(T obj)
            where T : Users.AdminUser
         {
@@ -31,6 +31,11 @@ namespace NorthCinema.Domain.Models
         public static void ShowList()
         {
 
+        }
+        public void AddSessionInList(int sessionId, Film filmSession, Hall hallSession, DateTime dateSession, TimeSpan timeSession)
+        {
+            Session session = new Session(sessionId, filmSession, hallSession, dateSession, timeSession);
+            Sessions.Add(session);
         }
     }
 }

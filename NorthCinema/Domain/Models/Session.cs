@@ -16,10 +16,10 @@ namespace NorthCinema.Domain.Models
             DateSession = dateSession;
             TimeSession = timeSession;
         }
-        public int SessionId { get; private set; }
-        public Film FilmSession { get; private set; }
-        public Hall HallSession { get; private set; }
-        public DateTime DateSession { get; private set; }
-        public TimeSpan TimeSession { get; private set; }
+        public int SessionId { get; set; }
+        public Film FilmSession { get; set; }
+        public Hall HallSession { get; set; }
+        public DateTime DateSession { get; set; }
+        public TimeSpan TimeSession { get; set; }
     }
 }
