@@ -38,12 +38,14 @@ namespace NorthCinema.Infrastructure
             {
                 SqlCommand command = new SqlCommand(
                 ("UPDATE [HALLS]" +
-                "SET NAME_HALL = @NAME_HALL" +
+                "SET NAME_HALL = @NAME_HALL, SEATING_CAPACITY = @SEATING_CAPACITY, PLACES_IN_ROW = @PLACES_IN_ROW" +
                 " WHERE @HALL_ID = HALL_ID;"),
                 connectToDateBase);
                 command.Connection.Open();
                 command.Parameters.AddWithValue("@HALL_ID", hall.HallId);
                 command.Parameters.AddWithValue("@NAME_HALL", hall.HallName);
+                command.Parameters.AddWithValue("@SEATING_CAPACITY", hall.SeatingCapacity);
+                command.Parameters.AddWithValue("@PLACES_IN_ROW", hall.PlacesInRow);
                 command.ExecuteNonQuery();
             }
         }

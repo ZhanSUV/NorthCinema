@@ -35,11 +35,13 @@ namespace NorthCinema.Infrastructure
             using (connectToDateBase)
             {
                 SqlCommand command = new SqlCommand(
-                ("INSERT INTO [HALLS] (NAME_HALL)" +
-                "VALUES (@NAME_HALL);"),
+                ("INSERT INTO [HALLS] (NAME_HALL, SEATING_CAPACITY, PLACES_IN_ROW)" +
+                "VALUES (@NAME_HALL, @SEATING_CAPACITY, @PLACES_IN_ROW);"),
                 connectToDateBase);
                 command.Connection.Open();
                 command.Parameters.AddWithValue("@NAME_HALL", hall.HallName);
+                command.Parameters.AddWithValue("@SEATING_CAPACITY", hall.SeatingCapacity);
+                command.Parameters.AddWithValue("@PLACES_IN_ROW", hall.PlacesInRow);
                 command.ExecuteNonQuery();
             }
         }

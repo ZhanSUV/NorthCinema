@@ -36,6 +36,10 @@
             this.UpdateButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.HallPlaces = new System.Windows.Forms.GroupBox();
+            this.SeatingCapacityLabel = new System.Windows.Forms.Label();
+            this.SeatingCapacityInput = new System.Windows.Forms.TextBox();
+            this.PlacesInRowLabel = new System.Windows.Forms.Label();
+            this.PlacesInRowInput = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHalls)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,7 +62,7 @@
             // dataGridViewHalls
             // 
             this.dataGridViewHalls.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewHalls.Location = new System.Drawing.Point(12, 60);
+            this.dataGridViewHalls.Location = new System.Drawing.Point(12, 79);
             this.dataGridViewHalls.MultiSelect = false;
             this.dataGridViewHalls.Name = "dataGridViewHalls";
             this.dataGridViewHalls.ReadOnly = true;
@@ -68,7 +72,7 @@
             // 
             // ExitButton
             // 
-            this.ExitButton.Location = new System.Drawing.Point(163, 267);
+            this.ExitButton.Location = new System.Drawing.Point(163, 286);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(75, 23);
             this.ExitButton.TabIndex = 5;
@@ -78,7 +82,7 @@
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(12, 225);
+            this.AddButton.Location = new System.Drawing.Point(12, 244);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(75, 23);
             this.AddButton.TabIndex = 6;
@@ -88,7 +92,7 @@
             // 
             // UpdateButton
             // 
-            this.UpdateButton.Location = new System.Drawing.Point(163, 225);
+            this.UpdateButton.Location = new System.Drawing.Point(163, 244);
             this.UpdateButton.Name = "UpdateButton";
             this.UpdateButton.Size = new System.Drawing.Size(75, 23);
             this.UpdateButton.TabIndex = 7;
@@ -98,7 +102,7 @@
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(303, 225);
+            this.DeleteButton.Location = new System.Drawing.Point(303, 244);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(75, 23);
             this.DeleteButton.TabIndex = 8;
@@ -109,18 +113,54 @@
             // HallPlaces
             // 
             this.HallPlaces.AutoSize = true;
-            this.HallPlaces.Location = new System.Drawing.Point(384, 12);
+            this.HallPlaces.Location = new System.Drawing.Point(384, 79);
             this.HallPlaces.Name = "HallPlaces";
             this.HallPlaces.Size = new System.Drawing.Size(347, 207);
             this.HallPlaces.TabIndex = 9;
             this.HallPlaces.TabStop = false;
             this.HallPlaces.Text = "Схема зала";
             // 
+            // SeatingCapacityLabel
+            // 
+            this.SeatingCapacityLabel.AutoSize = true;
+            this.SeatingCapacityLabel.Location = new System.Drawing.Point(381, 15);
+            this.SeatingCapacityLabel.Name = "SeatingCapacityLabel";
+            this.SeatingCapacityLabel.Size = new System.Drawing.Size(69, 13);
+            this.SeatingCapacityLabel.TabIndex = 10;
+            this.SeatingCapacityLabel.Text = "Кол-во мест";
+            // 
+            // SeatingCapacityInput
+            // 
+            this.SeatingCapacityInput.Location = new System.Drawing.Point(491, 12);
+            this.SeatingCapacityInput.Name = "SeatingCapacityInput";
+            this.SeatingCapacityInput.Size = new System.Drawing.Size(100, 20);
+            this.SeatingCapacityInput.TabIndex = 11;
+            // 
+            // PlacesInRowLabel
+            // 
+            this.PlacesInRowLabel.AutoSize = true;
+            this.PlacesInRowLabel.Location = new System.Drawing.Point(381, 47);
+            this.PlacesInRowLabel.Name = "PlacesInRowLabel";
+            this.PlacesInRowLabel.Size = new System.Drawing.Size(104, 13);
+            this.PlacesInRowLabel.TabIndex = 12;
+            this.PlacesInRowLabel.Text = "Кол-во мест в ряду";
+            // 
+            // PlacesInRowInput
+            // 
+            this.PlacesInRowInput.Location = new System.Drawing.Point(491, 44);
+            this.PlacesInRowInput.Name = "PlacesInRowInput";
+            this.PlacesInRowInput.Size = new System.Drawing.Size(100, 20);
+            this.PlacesInRowInput.TabIndex = 13;
+            // 
             // fHalls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(743, 336);
+            this.Controls.Add(this.PlacesInRowInput);
+            this.Controls.Add(this.PlacesInRowLabel);
+            this.Controls.Add(this.SeatingCapacityInput);
+            this.Controls.Add(this.SeatingCapacityLabel);
             this.Controls.Add(this.HallPlaces);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.UpdateButton);
@@ -147,5 +187,9 @@
         private System.Windows.Forms.Button UpdateButton;
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.GroupBox HallPlaces;
+        private System.Windows.Forms.Label SeatingCapacityLabel;
+        private System.Windows.Forms.TextBox SeatingCapacityInput;
+        private System.Windows.Forms.Label PlacesInRowLabel;
+        private System.Windows.Forms.TextBox PlacesInRowInput;
     }
 }

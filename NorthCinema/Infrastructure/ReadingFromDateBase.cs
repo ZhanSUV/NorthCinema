@@ -94,7 +94,7 @@ namespace NorthCinema.Infrastructure
             {
                 SqlCommand command = new SqlCommand(
                 "SELECT SESSION_ID, [SESSIONS].[HALL_ID], [SESSIONS].[FILM_ID], DATE_SESSION, TIME_SESSION," + 
-                "NAME_FILM, LENGTH_FILM, AGE_LIMIT, TICKET_PRICE, NAME_HALL FROM [SESSIONS], [FILMS], [HALLS]" + 
+                "NAME_FILM, LENGTH_FILM, AGE_LIMIT, TICKET_PRICE, NAME_HALL, SEATING_CAPACITY, PLACES_IN_ROW FROM [SESSIONS], [FILMS], [HALLS]" + 
                 "WHERE [SESSIONS].[HALL_ID] = [HALLS].[HALL_ID] AND [SESSIONS].[FILM_ID] = [FILMS].[FILM_ID];",
                 connectToDateBase);
                 connectToDateBase.Open();
@@ -110,7 +110,7 @@ namespace NorthCinema.Infrastructure
                         timeSession = readerSession.GetTimeSpan(4);
                         film = new Film(filmId, readerSession.GetString(5), readerSession.GetInt32(6),
                                 readerSession.GetInt32(7), readerSession.GetInt32(8));
-                        hall = new Hall(hallId, readerSession.GetString(9));
+                        hall = new Hall(hallId, readerSession.GetString(9), readerSession.GetInt32(10), readerSession.GetInt32(11));
                         Session session = new Session(sessionId, film, hall, dateSession, timeSession);
                         sessionList.Add(session);
                     }
@@ -126,7 +126,7 @@ namespace NorthCinema.Infrastructure
             using (connectToDateBase)
             {
                 SqlCommand command = new SqlCommand(
-                "SELECT HALL_ID, NAME_HALL FROM [HALLS];",
+                "SELECT HALL_ID, NAME_HALL, SEATING_CAPACITY, PLACES_IN_ROW FROM [HALLS];",
                 connectToDateBase);
                 connectToDateBase.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -134,7 +134,7 @@ namespace NorthCinema.Infrastructure
                 {
                     while (reader.Read())
                     {
-                        Hall hall = new Hall(reader.GetInt32(0), reader.GetString(1));
+                        Hall hall = new Hall(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetInt32(3));
                         hallsList.Add(hall);
                     }
                 }

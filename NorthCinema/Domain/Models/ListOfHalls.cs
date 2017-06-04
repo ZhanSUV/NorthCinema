@@ -32,9 +32,9 @@ namespace NorthCinema.Domain.Models
         {
 
         }
-        public void AddHallInList(int hallId, string hallName)
+        public void AddHallInList(int hallId, string hallName, int seatingCapacity, int placesInRow)
         {
-            Hall hall = new Hall(hallId, hallName);
+            Hall hall = new Hall(hallId, hallName, seatingCapacity, placesInRow);
             Halls.Add(hall);
         }
     }
