@@ -15,6 +15,8 @@ namespace NorthCinema.UI
 {
     public partial class fHalls : Form
     {
+        Button[][] buttonArray = new Button[1][];
+        ListOfPlacesInHalls placesList;
         ListOfHalls hallsList;
         BindingSource sourceData = new BindingSource();
         int indexRow;
@@ -26,6 +28,7 @@ namespace NorthCinema.UI
                 //класс, считывающий данные из бд и это в List засунуть; 
                 ReadingFromDateBase reading = new ReadingFromDateBase();
                 hallsList = reading.ReadHalls();
+                placesList = reading.ReadPlacesInHall();
                 sourceData.DataSource = hallsList.Halls;
                 dataGridViewHalls.DataSource = sourceData;
                 dataGridViewHalls.Columns[0].Visible = false;
@@ -66,7 +69,7 @@ namespace NorthCinema.UI
                 NameHallInput.Text = dataGridViewHalls.Rows[e.RowIndex].Cells[1].Value.ToString();
                 SeatingCapacityInput.Text = dataGridViewHalls.Rows[e.RowIndex].Cells[2].Value.ToString();
                 PlacesInRowInput.Text = dataGridViewHalls.Rows[e.RowIndex].Cells[3].Value.ToString();
-                LoadSchemeOfHall(hallsList.Halls[indexRow].SeatingCapacity, hallsList.Halls[indexRow].PlacesInRow);
+                LoadSchemeOfHall2(hallsList.Halls[indexRow].SeatingCapacity, hallsList.Halls[indexRow].PlacesInRow);
             }   
         }
         private void AddButton_Click(object sender, EventArgs e)
@@ -120,6 +123,7 @@ namespace NorthCinema.UI
                 buttonArray[i] = new Button();
                 buttonArray[i].Size = new Size(30, 30);
                 buttonArray[i].Text = placesInRow.ToString();
+                //buttonArray[i].MouseClick += new MouseEventHandler(SelectPlaceInHall);
                 if (rows == maxRows && notEven)
                 {
                     X += 35 * (limitPlacesInRow - lastPlaces) / 2;
@@ -158,5 +162,90 @@ namespace NorthCinema.UI
                 */
             }
         }
+        private void LoadSchemeOfHall2(int seatingCapacity, int placesInRowLimit)
+        {
+            RowInput.Clear();
+            PlaceInput.Clear();
+            int X = 6;
+            int Y = 19;
+            bool notEven = false;
+            int leftPlaces = seatingCapacity % placesInRowLimit;
+            if (leftPlaces != 0)
+            {
+                notEven = true;
+                buttonArray = new Button[(seatingCapacity / placesInRowLimit + 1)][];
+            }
+            else
+            {
+                buttonArray = new Button[seatingCapacity / placesInRowLimit][];
+            }
+            for (int i = 0; i < buttonArray.Length; i++)
+            {
+                buttonArray[i] = new Button[placesInRowLimit];
+                if(i == buttonArray.Length - 1 && notEven)
+                {
+                    buttonArray[i] = new Button[leftPlaces];
+                }
+                for (int j = 0; j < buttonArray[i].Length; j++)
+                {
+                    buttonArray[i][j] = new Button();
+                    buttonArray[i][j].Size = new Size(30, 30);
+                    buttonArray[i][j].Name = i.ToString();
+                    buttonArray[i][j].Text = (j + 1).ToString();
+                    buttonArray[i][j].MouseClick += new MouseEventHandler(SelectedPlaceInHall);
+                    if (i == buttonArray.Length - 1 && notEven)
+                    {
+                        X += 35 * (placesInRowLimit - leftPlaces) / 2;
+                        notEven = false;
+                    }
+                    buttonArray[i][j].Location = new Point(X, Y);
+                    HallPlaces.Controls.Add(buttonArray[i][j]);
+                    X += 35;
+                }
+                Label rowLabel = new Label();
+                rowLabel.Size = new Size(40, 30);
+                rowLabel.Location = new Point(35 * buttonArray[0].Length, Y);
+                rowLabel.Text = "Ряд " + (i + 1) + " ";
+                HallPlaces.Controls.Add(rowLabel);
+                X = 6;
+                Y += 40;
+            }
+        }
+        private void FillingPlaces(int hallId, int seatingCapacity, int placesInRowLimit)
+        {
+            WritingInDatabase writing = new WritingInDatabase();
+            int rows = 0;
+            bool notEven = false;
+            int leftPlaces = seatingCapacity % placesInRowLimit;
+            if (leftPlaces != 0)
+            {
+                rows = (seatingCapacity / placesInRowLimit) + 1;
+                notEven = true;
+            }
+            else
+            {
+                rows = seatingCapacity / placesInRowLimit;
+            }
+            for (int i = 1; i <= rows; i++)
+            {
+                if (i == rows && notEven)
+                {
+                    placesInRowLimit = leftPlaces;
+                }
+                for (int j = 1; j <= placesInRowLimit; j++)
+                { 
+                    placesList.AddPlacesInHall(placesList.Places.Count() - 1, hallId, i, j);
+                }
+            }
+           
+            //writing.WriteInDatabase(placesList);
+        }
+        private void SelectedPlaceInHall(object sender, EventArgs e)
+        {
+            Button clickedButton = (Button)sender;
+            RowInput.Text = clickedButton.Name;
+            PlaceInput.Text = clickedButton.Text;
+        }
     }
 }
+

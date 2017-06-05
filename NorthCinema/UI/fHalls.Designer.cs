@@ -40,6 +40,10 @@
             this.SeatingCapacityInput = new System.Windows.Forms.TextBox();
             this.PlacesInRowLabel = new System.Windows.Forms.Label();
             this.PlacesInRowInput = new System.Windows.Forms.TextBox();
+            this.RowLabel = new System.Windows.Forms.Label();
+            this.PlaceLabel = new System.Windows.Forms.Label();
+            this.RowInput = new System.Windows.Forms.TextBox();
+            this.PlaceInput = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHalls)).BeginInit();
             this.SuspendLayout();
             // 
@@ -152,13 +156,49 @@
             this.PlacesInRowInput.Size = new System.Drawing.Size(100, 20);
             this.PlacesInRowInput.TabIndex = 13;
             // 
+            // RowLabel
+            // 
+            this.RowLabel.AutoSize = true;
+            this.RowLabel.Location = new System.Drawing.Point(323, 315);
+            this.RowLabel.Name = "RowLabel";
+            this.RowLabel.Size = new System.Drawing.Size(26, 13);
+            this.RowLabel.TabIndex = 14;
+            this.RowLabel.Text = "Ряд";
+            // 
+            // PlaceLabel
+            // 
+            this.PlaceLabel.AutoSize = true;
+            this.PlaceLabel.Location = new System.Drawing.Point(323, 344);
+            this.PlaceLabel.Name = "PlaceLabel";
+            this.PlaceLabel.Size = new System.Drawing.Size(39, 13);
+            this.PlaceLabel.TabIndex = 15;
+            this.PlaceLabel.Text = "Место";
+            // 
+            // RowInput
+            // 
+            this.RowInput.Location = new System.Drawing.Point(397, 312);
+            this.RowInput.Name = "RowInput";
+            this.RowInput.Size = new System.Drawing.Size(100, 20);
+            this.RowInput.TabIndex = 16;
+            // 
+            // PlaceInput
+            // 
+            this.PlaceInput.Location = new System.Drawing.Point(397, 341);
+            this.PlaceInput.Name = "PlaceInput";
+            this.PlaceInput.Size = new System.Drawing.Size(100, 20);
+            this.PlaceInput.TabIndex = 17;
+            // 
             // fHalls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(399, 629);
+            this.ClientSize = new System.Drawing.Size(584, 629);
+            this.Controls.Add(this.PlaceInput);
+            this.Controls.Add(this.RowInput);
+            this.Controls.Add(this.PlaceLabel);
+            this.Controls.Add(this.RowLabel);
             this.Controls.Add(this.PlacesInRowInput);
             this.Controls.Add(this.PlacesInRowLabel);
             this.Controls.Add(this.SeatingCapacityInput);
@@ -174,6 +214,7 @@
             this.Name = "fHalls";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fHalls";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHalls)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -194,5 +235,9 @@
         private System.Windows.Forms.TextBox SeatingCapacityInput;
         private System.Windows.Forms.Label PlacesInRowLabel;
         private System.Windows.Forms.TextBox PlacesInRowInput;
+        private System.Windows.Forms.Label RowLabel;
+        private System.Windows.Forms.Label PlaceLabel;
+        private System.Windows.Forms.TextBox RowInput;
+        private System.Windows.Forms.TextBox PlaceInput;
     }
 }
