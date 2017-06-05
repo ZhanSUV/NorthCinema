@@ -49,6 +49,10 @@ namespace NorthCinema.Infrastructure
                 command.ExecuteNonQuery();
             }
         }
+        public void UpdateInDatabase(PlaceInHall places)
+        {
+
+        }
         public void UpdateInDatabase(CashierUser cashier)
         {
             SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);

@@ -198,6 +198,7 @@
             this.Controls.Add(this.LastNameLabel);
             this.Controls.Add(this.FirstNameLabel);
             this.Name = "fCashiers";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fCashiers";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCashiers)).EndInit();
             this.ResumeLayout(false);

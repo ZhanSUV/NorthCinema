@@ -46,7 +46,7 @@
             // NameHallLabel
             // 
             this.NameHallLabel.AutoSize = true;
-            this.NameHallLabel.Location = new System.Drawing.Point(9, 19);
+            this.NameHallLabel.Location = new System.Drawing.Point(14, 21);
             this.NameHallLabel.Name = "NameHallLabel";
             this.NameHallLabel.Size = new System.Drawing.Size(84, 13);
             this.NameHallLabel.TabIndex = 1;
@@ -54,7 +54,7 @@
             // 
             // NameHallInput
             // 
-            this.NameHallInput.Location = new System.Drawing.Point(99, 16);
+            this.NameHallInput.Location = new System.Drawing.Point(104, 18);
             this.NameHallInput.Name = "NameHallInput";
             this.NameHallInput.Size = new System.Drawing.Size(100, 20);
             this.NameHallInput.TabIndex = 3;
@@ -62,7 +62,7 @@
             // dataGridViewHalls
             // 
             this.dataGridViewHalls.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewHalls.Location = new System.Drawing.Point(12, 79);
+            this.dataGridViewHalls.Location = new System.Drawing.Point(11, 68);
             this.dataGridViewHalls.MultiSelect = false;
             this.dataGridViewHalls.Name = "dataGridViewHalls";
             this.dataGridViewHalls.ReadOnly = true;
@@ -72,7 +72,7 @@
             // 
             // ExitButton
             // 
-            this.ExitButton.Location = new System.Drawing.Point(163, 286);
+            this.ExitButton.Location = new System.Drawing.Point(302, 274);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(75, 23);
             this.ExitButton.TabIndex = 5;
@@ -82,7 +82,7 @@
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(12, 244);
+            this.AddButton.Location = new System.Drawing.Point(8, 233);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(75, 23);
             this.AddButton.TabIndex = 6;
@@ -92,7 +92,7 @@
             // 
             // UpdateButton
             // 
-            this.UpdateButton.Location = new System.Drawing.Point(163, 244);
+            this.UpdateButton.Location = new System.Drawing.Point(160, 233);
             this.UpdateButton.Name = "UpdateButton";
             this.UpdateButton.Size = new System.Drawing.Size(75, 23);
             this.UpdateButton.TabIndex = 7;
@@ -102,7 +102,7 @@
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(303, 244);
+            this.DeleteButton.Location = new System.Drawing.Point(302, 233);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(75, 23);
             this.DeleteButton.TabIndex = 8;
@@ -113,7 +113,7 @@
             // HallPlaces
             // 
             this.HallPlaces.AutoSize = true;
-            this.HallPlaces.Location = new System.Drawing.Point(384, 79);
+            this.HallPlaces.Location = new System.Drawing.Point(30, 371);
             this.HallPlaces.Name = "HallPlaces";
             this.HallPlaces.Size = new System.Drawing.Size(347, 207);
             this.HallPlaces.TabIndex = 9;
@@ -123,7 +123,7 @@
             // SeatingCapacityLabel
             // 
             this.SeatingCapacityLabel.AutoSize = true;
-            this.SeatingCapacityLabel.Location = new System.Drawing.Point(381, 15);
+            this.SeatingCapacityLabel.Location = new System.Drawing.Point(29, 312);
             this.SeatingCapacityLabel.Name = "SeatingCapacityLabel";
             this.SeatingCapacityLabel.Size = new System.Drawing.Size(69, 13);
             this.SeatingCapacityLabel.TabIndex = 10;
@@ -131,7 +131,7 @@
             // 
             // SeatingCapacityInput
             // 
-            this.SeatingCapacityInput.Location = new System.Drawing.Point(491, 12);
+            this.SeatingCapacityInput.Location = new System.Drawing.Point(152, 312);
             this.SeatingCapacityInput.Name = "SeatingCapacityInput";
             this.SeatingCapacityInput.Size = new System.Drawing.Size(100, 20);
             this.SeatingCapacityInput.TabIndex = 11;
@@ -139,7 +139,7 @@
             // PlacesInRowLabel
             // 
             this.PlacesInRowLabel.AutoSize = true;
-            this.PlacesInRowLabel.Location = new System.Drawing.Point(381, 47);
+            this.PlacesInRowLabel.Location = new System.Drawing.Point(29, 344);
             this.PlacesInRowLabel.Name = "PlacesInRowLabel";
             this.PlacesInRowLabel.Size = new System.Drawing.Size(104, 13);
             this.PlacesInRowLabel.TabIndex = 12;
@@ -147,7 +147,7 @@
             // 
             // PlacesInRowInput
             // 
-            this.PlacesInRowInput.Location = new System.Drawing.Point(491, 44);
+            this.PlacesInRowInput.Location = new System.Drawing.Point(152, 341);
             this.PlacesInRowInput.Name = "PlacesInRowInput";
             this.PlacesInRowInput.Size = new System.Drawing.Size(100, 20);
             this.PlacesInRowInput.TabIndex = 13;
@@ -156,7 +156,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(743, 336);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(399, 629);
             this.Controls.Add(this.PlacesInRowInput);
             this.Controls.Add(this.PlacesInRowLabel);
             this.Controls.Add(this.SeatingCapacityInput);
@@ -170,6 +172,7 @@
             this.Controls.Add(this.NameHallInput);
             this.Controls.Add(this.NameHallLabel);
             this.Name = "fHalls";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fHalls";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHalls)).EndInit();
             this.ResumeLayout(false);

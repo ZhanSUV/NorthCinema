@@ -37,25 +37,6 @@ namespace NorthCinema.UI
                     
                 }
                 LoadDataGridView();
-                // столбцы не поменять, нужно искать способ
-                /*
-                sourceData.DataSource = sessionsList.Sessions;
-                dataGridViewSessions.DataSource = sourceData;
-                for (int i = 0; i < sourceData.Count; i++)
-                {
-                    dataGridViewSessions[2, i].Value = filmIds[i];
-                }
-                dataGridViewSessions.Refresh();
-                dataGridViewSessions.Columns[0].Visible = false;*/
-
-
-                
-                //не выводит
-                /*
-                FilmComboBox.DataSource = sessionsList.Sessions;
-                FilmComboBox.DisplayMember = "sessionsList.Sessions.FilmSession.FilmName";
-                FilmComboBox.ValueMember = "FilmSession";
-                */
                 filmList = reading.ReadFilms();
                 hallList = reading.ReadHalls();
                 FilmComboBox.DataSource = filmList.Films;

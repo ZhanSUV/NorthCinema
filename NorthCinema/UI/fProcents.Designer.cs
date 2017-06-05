@@ -156,6 +156,7 @@
             this.Controls.Add(this.DescriptionLabel);
             this.Controls.Add(this.DiscountOrMarkupLabel);
             this.Name = "fProcents";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fProcents";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPercents)).EndInit();
             this.ResumeLayout(false);

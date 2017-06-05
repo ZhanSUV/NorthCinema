@@ -182,6 +182,7 @@
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.dataGridViewFilm);
             this.Name = "fAdminFilms";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fAdminFilms";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFilm)).EndInit();
             this.ResumeLayout(false);

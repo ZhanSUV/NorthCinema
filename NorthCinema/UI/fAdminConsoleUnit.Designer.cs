@@ -108,6 +108,7 @@
             this.Controls.Add(this.Session);
             this.Controls.Add(this.Film);
             this.Name = "fAdminConsoleUnit";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fAdminConsoleUnit";
             this.ResumeLayout(false);
 

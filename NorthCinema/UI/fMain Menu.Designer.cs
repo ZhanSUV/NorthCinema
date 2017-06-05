@@ -60,6 +60,7 @@
             this.Controls.Add(this.Exit);
             this.Controls.Add(this.Authorization);
             this.Name = "MainMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainMenu";
             this.ResumeLayout(false);
 

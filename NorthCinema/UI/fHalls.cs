@@ -71,7 +71,8 @@ namespace NorthCinema.UI
         }
         private void AddButton_Click(object sender, EventArgs e)
         {
-            //hallsList.AddHallInList(hallsList.Halls[hallsList.Halls.Count() - 1].HallId + 1, NameHallInput.Text);
+            hallsList.AddHallInList(hallsList.Halls[hallsList.Halls.Count() - 1].HallId + 1, NameHallInput.Text, 
+                Convert.ToInt32(SeatingCapacityInput.Text), Convert.ToInt32(PlacesInRowInput.Text));
             WritingInDatabase writing = new WritingInDatabase();
             writing.WriteInDatabase(hallsList.Halls.Last());
             sourceData.ResetBindings(false);
@@ -98,8 +99,8 @@ namespace NorthCinema.UI
         }
         private void LoadSchemeOfHall(int seatingCapacity, int placesInRowLimit)
         {
-            HallPlaces.Width = this.Width / 2;
-            HallPlaces.Height = this.Height / 2;
+            //HallPlaces.Width = this.Width / 2;
+            //HallPlaces.Height = this.Height / 2;
             int X = 6;
             int Y = 19;
             Button[] buttonArray = new Button[seatingCapacity];
@@ -144,6 +145,7 @@ namespace NorthCinema.UI
                     placesInRow = 1;
                     rows++;
                 }
+                /*
                 if (HallPlaces.Width > this.Width / 2)
                 {
                     this.Width = HallPlaces.Width + this.Width / 2;
@@ -153,6 +155,7 @@ namespace NorthCinema.UI
                 {
                     this.Height = HallPlaces.Height + this.Height / 2;
                 }
+                */
             }
         }
     }

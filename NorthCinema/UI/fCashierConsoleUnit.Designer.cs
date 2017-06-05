@@ -60,6 +60,7 @@
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.FilmButton);
             this.Name = "fCashierConsoleUnit";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fCashierConsoleUnit";
             this.ResumeLayout(false);
 

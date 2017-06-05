@@ -192,6 +192,7 @@
             this.Controls.Add(this.HallIdLabel);
             this.Controls.Add(this.dataGridViewSessions);
             this.Name = "fSessions";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fSessions";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSessions)).EndInit();
             this.ResumeLayout(false);

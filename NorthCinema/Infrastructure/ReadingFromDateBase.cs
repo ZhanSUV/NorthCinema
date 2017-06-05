@@ -143,6 +143,30 @@ namespace NorthCinema.Infrastructure
             ListOfHalls halls = new ListOfHalls(hallsList);
             return halls;
         }
+        public ListOfPlacesInHalls ReadPlacesInHall()
+        {
+            List<PlaceInHall> placesList = new List<PlaceInHall>();
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                SqlCommand command = new SqlCommand(
+                "SELECT PLACE_ID, HALL_ID, ROW_PLACES, PLACES FROM [PLACESINHALLS];",
+                connectToDateBase);
+                connectToDateBase.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        PlaceInHall place = new PlaceInHall(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3));
+                        placesList.Add(place);
+                    }
+                }
+                reader.Close();
+            }
+            ListOfPlacesInHalls places = new ListOfPlacesInHalls(placesList);
+            return places;
+        }
         public ListOfPercents ReadPercentages()
         {
             List<Percent> percentsList = new List<Percent>();
