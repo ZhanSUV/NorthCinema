@@ -89,7 +89,7 @@ namespace NorthCinema.UI
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            sessionsList.AddSessionInList(filmList.Films.Max().FilmId + 1, 
+            sessionsList.AddSessionInList(filmList.Films.Last().FilmId + 1, 
                 filmList.Films.Find(x => x.FilmName == FilmComboBox.Text), 
                 hallList.Halls.Find(x => x.HallName == HallComboBox.Text), 
                 DateInputPicker.Value, TimeInputPicker.Value.TimeOfDay);
@@ -100,7 +100,25 @@ namespace NorthCinema.UI
         private void LoadDataGridView()
         {
             //плохая реализация
-
+            var table = new DataTable();
+            table.Columns.Add("Сеанс");
+            table.Columns.Add("Фильм");
+            table.Columns.Add("Залл");
+            table.Columns.Add("Дата");
+            table.Columns.Add("Время");
+            table.Rows.Add();
+            for (int j = 0; j < sessionsList.Sessions.Count; j++)
+            {
+                table.Rows.Add(sessionsList.Sessions[j].SessionId, 
+                    sessionsList.Sessions[j].FilmSession.FilmName,
+                    sessionsList.Sessions[j].HallSession.HallName, 
+                    sessionsList.Sessions[j].DateSession.Date.ToShortDateString(),
+                    sessionsList.Sessions[j].TimeSession);
+            }
+            dataGridViewSessions.DataSource = table;
+            (dataGridViewSessions.DataSource as DataTable).DefaultView.RowFilter = string.Format("Isnull(Сеанс, '') <> ''");
+            dataGridViewSessions.Columns[0].Visible = false;
+            /*
             dataGridViewSessions.ColumnCount = 5;
             dataGridViewSessions.Columns[0].Name = "Session ID";
             dataGridViewSessions.Columns[0].Visible = false;
@@ -134,6 +152,7 @@ namespace NorthCinema.UI
                     }
                 }
             }
+            */
         }
 
         private void UpdateButton_Click(object sender, EventArgs e)
@@ -153,6 +172,28 @@ namespace NorthCinema.UI
             deleting.DeleteFromDatabase(sessionsList.Sessions[indexRow]);
             sessionsList.Sessions.RemoveAt(indexRow);
             LoadDataGridView();
+        }
+
+        private void monthCalendar_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            (dataGridViewSessions.DataSource as DataTable).DefaultView.RowFilter = string.Empty;
+            string date = monthCalendar.SelectionStart.ToString("dd.MM.yyyy");
+            (dataGridViewSessions.DataSource as DataTable).DefaultView.RowFilter = string.Format("Дата = '{0}'", date);
+        }
+
+        private void FindButton_Click(object sender, EventArgs e)
+        {
+            //(dataGridViewSessions.DataSource as DataTable).DefaultView.RowFilter = string.Empty;
+            string nameFilm = FilterNameFilmInput.Text;
+            (dataGridViewSessions.DataSource as DataTable).DefaultView.RowFilter = string.Format("Фильм = '{0}'", nameFilm);
+        }
+
+        private void FilterNameFilmWithDate_Click(object sender, EventArgs e)
+        {
+            string date = monthCalendar.SelectionStart.ToString("dd.MM.yyyy");
+            string nameFilm = FilterNameFilmInput.Text;
+            (dataGridViewSessions.DataSource as DataTable).DefaultView.RowFilter = 
+                string.Format("Дата = '{0}' and Фильм = '{1}'", date, nameFilm);
         }
     }
 }

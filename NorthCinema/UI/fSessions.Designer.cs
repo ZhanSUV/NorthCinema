@@ -41,19 +41,26 @@
             this.ExitButton = new System.Windows.Forms.Button();
             this.DateInputPicker = new System.Windows.Forms.DateTimePicker();
             this.TimeInputPicker = new System.Windows.Forms.DateTimePicker();
+            this.monthCalendar = new System.Windows.Forms.MonthCalendar();
+            this.SearchingNameFilm = new System.Windows.Forms.Label();
+            this.FilterNameFilmInput = new System.Windows.Forms.TextBox();
+            this.FindButton = new System.Windows.Forms.Button();
+            this.FilterNameFilmWithDate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSessions)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewSessions
             // 
+            this.dataGridViewSessions.AllowUserToAddRows = false;
             this.dataGridViewSessions.AllowUserToOrderColumns = true;
             this.dataGridViewSessions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewSessions.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewSessions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewSessions.Location = new System.Drawing.Point(21, 139);
+            this.dataGridViewSessions.Location = new System.Drawing.Point(21, 132);
             this.dataGridViewSessions.MultiSelect = false;
             this.dataGridViewSessions.Name = "dataGridViewSessions";
             this.dataGridViewSessions.ReadOnly = true;
+            this.dataGridViewSessions.RowHeadersVisible = false;
             this.dataGridViewSessions.Size = new System.Drawing.Size(503, 205);
             this.dataGridViewSessions.TabIndex = 0;
             this.dataGridViewSessions.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSessions_CellClick);
@@ -173,11 +180,59 @@
             this.TimeInputPicker.Size = new System.Drawing.Size(200, 20);
             this.TimeInputPicker.TabIndex = 19;
             // 
+            // monthCalendar
+            // 
+            this.monthCalendar.Location = new System.Drawing.Point(585, 132);
+            this.monthCalendar.Name = "monthCalendar";
+            this.monthCalendar.TabIndex = 20;
+            this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar_DateChanged);
+            // 
+            // SearchingNameFilm
+            // 
+            this.SearchingNameFilm.AutoSize = true;
+            this.SearchingNameFilm.Location = new System.Drawing.Point(582, 33);
+            this.SearchingNameFilm.Name = "SearchingNameFilm";
+            this.SearchingNameFilm.Size = new System.Drawing.Size(100, 13);
+            this.SearchingNameFilm.TabIndex = 21;
+            this.SearchingNameFilm.Text = "Название фильма";
+            // 
+            // FilterNameFilmInput
+            // 
+            this.FilterNameFilmInput.Location = new System.Drawing.Point(585, 49);
+            this.FilterNameFilmInput.Name = "FilterNameFilmInput";
+            this.FilterNameFilmInput.Size = new System.Drawing.Size(164, 20);
+            this.FilterNameFilmInput.TabIndex = 22;
+            // 
+            // FindButton
+            // 
+            this.FindButton.Location = new System.Drawing.Point(585, 77);
+            this.FindButton.Name = "FindButton";
+            this.FindButton.Size = new System.Drawing.Size(164, 23);
+            this.FindButton.TabIndex = 23;
+            this.FindButton.Text = "Поиск по названию";
+            this.FindButton.UseVisualStyleBackColor = true;
+            this.FindButton.Click += new System.EventHandler(this.FindButton_Click);
+            // 
+            // FilterNameFilmWithDate
+            // 
+            this.FilterNameFilmWithDate.Location = new System.Drawing.Point(585, 104);
+            this.FilterNameFilmWithDate.Name = "FilterNameFilmWithDate";
+            this.FilterNameFilmWithDate.Size = new System.Drawing.Size(164, 23);
+            this.FilterNameFilmWithDate.TabIndex = 24;
+            this.FilterNameFilmWithDate.Text = "Поиск по названию и дате";
+            this.FilterNameFilmWithDate.UseVisualStyleBackColor = true;
+            this.FilterNameFilmWithDate.Click += new System.EventHandler(this.FilterNameFilmWithDate_Click);
+            // 
             // fSessions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(545, 432);
+            this.ClientSize = new System.Drawing.Size(799, 432);
+            this.Controls.Add(this.FilterNameFilmWithDate);
+            this.Controls.Add(this.FindButton);
+            this.Controls.Add(this.FilterNameFilmInput);
+            this.Controls.Add(this.SearchingNameFilm);
+            this.Controls.Add(this.monthCalendar);
             this.Controls.Add(this.TimeInputPicker);
             this.Controls.Add(this.DateInputPicker);
             this.Controls.Add(this.ExitButton);
@@ -214,5 +269,10 @@
         private System.Windows.Forms.DataGridView dataGridViewSessions;
         private System.Windows.Forms.DateTimePicker DateInputPicker;
         private System.Windows.Forms.DateTimePicker TimeInputPicker;
+        private System.Windows.Forms.MonthCalendar monthCalendar;
+        private System.Windows.Forms.Label SearchingNameFilm;
+        private System.Windows.Forms.TextBox FilterNameFilmInput;
+        private System.Windows.Forms.Button FindButton;
+        private System.Windows.Forms.Button FilterNameFilmWithDate;
     }
 }

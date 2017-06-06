@@ -71,6 +71,12 @@
     <Compile Include="UI\fAdminConsoleUnit.Designer.cs">
       <DependentUpon>fAdminConsoleUnit.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\fCalendar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\fCalendar.Designer.cs">
+      <DependentUpon>fCalendar.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\fCashierConsoleUnit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +167,9 @@
     </Compile>
     <EmbeddedResource Include="UI\fAdminConsoleUnit.resx">
       <DependentUpon>fAdminConsoleUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\fCalendar.resx">
+      <DependentUpon>fCalendar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\fCashierConsoleUnit.resx">
       <DependentUpon>fCashierConsoleUnit.cs</DependentUpon>
