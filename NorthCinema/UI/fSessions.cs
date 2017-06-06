@@ -89,7 +89,7 @@ namespace NorthCinema.UI
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            sessionsList.AddSessionInList(filmList.Films[filmList.Films.Count() - 1].FilmId + 1, 
+            sessionsList.AddSessionInList(filmList.Films.Max().FilmId + 1, 
                 filmList.Films.Find(x => x.FilmName == FilmComboBox.Text), 
                 hallList.Halls.Find(x => x.HallName == HallComboBox.Text), 
                 DateInputPicker.Value, TimeInputPicker.Value.TimeOfDay);
@@ -108,7 +108,6 @@ namespace NorthCinema.UI
             dataGridViewSessions.Columns[2].Name = "Залл";
             dataGridViewSessions.Columns[3].Name = "Дата";
             dataGridViewSessions.Columns[4].Name = "Время";
-            dataGridViewSessions.RowCount = sessionsList.Sessions.Count;
             for (int i = 0; i < dataGridViewSessions.ColumnCount; i++)
             {
                 for (int j = 0; j < sessionsList.Sessions.Count; j++)

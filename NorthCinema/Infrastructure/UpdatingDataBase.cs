@@ -49,9 +49,23 @@ namespace NorthCinema.Infrastructure
                 command.ExecuteNonQuery();
             }
         }
-        public void UpdateInDatabase(PlaceInHall places)
+        public void UpdateInDatabase(PlaceInHall place)
         {
-
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                SqlCommand command = new SqlCommand(
+                ("UPDATE [PLACESINHALLS]" +
+                 "SET HALL_ID = @HALL_ID, ROW_PLACES = @ROW_PLACES, PLACE = @PLACE" +
+                 " WHERE @PLACE_ID = PLACE_ID;"),
+                connectToDateBase);
+                command.Connection.Open();
+                command.Parameters.AddWithValue("@PLACE_ID", place.PlaceId);
+                command.Parameters.AddWithValue("@HALL_ID", place.HallId);
+                command.Parameters.AddWithValue("@ROW_PLACES", place.Row);
+                command.Parameters.AddWithValue("@PLACE", place.PlaceNumber);
+                command.ExecuteNonQuery();
+            }
         }
         public void UpdateInDatabase(CashierUser cashier)
         {

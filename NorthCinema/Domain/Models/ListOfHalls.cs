@@ -12,26 +12,7 @@ namespace NorthCinema.Domain.Models
         {
             Halls = halls;
         }
-        public List<Hall> Halls { get; private set; }
-        public static void AddFilm<T>(T obj)
-           where T : Users.AdminUser
-        {
-
-        }
-        public static void EditFilm<T>(T obj)
-           where T : Users.AdminUser
-        {
-
-        }
-        public static void DeleteFilm<T>(T obj)
-           where T : Users.AdminUser
-        {
-
-        }
-        public static void ShowList()
-        {
-
-        }
+        public List<Hall> Halls { get; set; }
         public void AddHallInList(int hallId, string hallName, int seatingCapacity, int placesInRow)
         {
             Hall hall = new Hall(hallId, hallName, seatingCapacity, placesInRow);

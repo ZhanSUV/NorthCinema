@@ -28,7 +28,11 @@ namespace NorthCinema.UI
                 //класс, считывающий данные из бд и это в List засунуть; 
                 ReadingFromDateBase reading = new ReadingFromDateBase();
                 hallsList = reading.ReadHalls();
-                placesList = reading.ReadPlacesInHall();
+                for (int i = 0; i < hallsList.Halls.Count; i++)
+                {
+                    hallsList.Halls[i].Places = reading.ReadPlacesInHall(hallsList.Halls[i].HallId);
+                }
+                placesList = reading.ReadAllPlacesOfAllHalls();
                 sourceData.DataSource = hallsList.Halls;
                 dataGridViewHalls.DataSource = sourceData;
                 dataGridViewHalls.Columns[0].Visible = false;
@@ -69,100 +73,74 @@ namespace NorthCinema.UI
                 NameHallInput.Text = dataGridViewHalls.Rows[e.RowIndex].Cells[1].Value.ToString();
                 SeatingCapacityInput.Text = dataGridViewHalls.Rows[e.RowIndex].Cells[2].Value.ToString();
                 PlacesInRowInput.Text = dataGridViewHalls.Rows[e.RowIndex].Cells[3].Value.ToString();
-                LoadSchemeOfHall2(hallsList.Halls[indexRow].SeatingCapacity, hallsList.Halls[indexRow].PlacesInRow);
-            }   
+                LoadSchemeOfHall(hallsList.Halls[indexRow].SeatingCapacity, hallsList.Halls[indexRow].PlacesInRow);
+            }
         }
         private void AddButton_Click(object sender, EventArgs e)
         {
-            hallsList.AddHallInList(hallsList.Halls[hallsList.Halls.Count() - 1].HallId + 1, NameHallInput.Text, 
-                Convert.ToInt32(SeatingCapacityInput.Text), Convert.ToInt32(PlacesInRowInput.Text));
-            WritingInDatabase writing = new WritingInDatabase();
-            writing.WriteInDatabase(hallsList.Halls.Last());
-            sourceData.ResetBindings(false);
+            HallPlaces.Controls.Clear();
+            if (SeatingCapacityInput.Text == "" || PlacesInRowInput.Text == "" || SeatingCapacityInput.Text == "0"
+                || PlacesInRowInput.Text == "0")
+            {
+                MessageBox.Show("Нельзя создать пустой зал");
+            }
+            else
+            {
+                int id = 1;
+                if (hallsList.Halls.Count != 0)
+                {
+                    id = hallsList.Halls.Count + 1;
+                }
+                hallsList.AddHallInList(id, NameHallInput.Text,
+                    Convert.ToInt32(SeatingCapacityInput.Text), Convert.ToInt32(PlacesInRowInput.Text));
+
+                WritingInDatabase writing = new WritingInDatabase();
+
+                writing.WriteInDatabase(hallsList.Halls.Last());
+
+                FillingPlaces(hallsList.Halls.Last());
+
+                sourceData.ResetBindings(false);
+
+                LoadSchemeOfHall(Convert.ToInt32(SeatingCapacityInput.Text), Convert.ToInt32(PlacesInRowInput.Text));
+            }
         }
 
         private void UpdateButton_Click(object sender, EventArgs e)
         {
-            hallsList.Halls[indexRow].HallName = NameHallInput.Text;
-            hallsList.Halls[indexRow].PlacesInRow = Convert.ToInt32(PlacesInRowInput.Text);
-            hallsList.Halls[indexRow].SeatingCapacity = Convert.ToInt32(SeatingCapacityInput.Text);
-            UpdatingDataBase updating = new UpdatingDataBase();
-            updating.UpdateInDatabase(hallsList.Halls[indexRow]);
-            sourceData.ResetBindings(false); //подтверждает изменения
-            HallPlaces.Controls.Clear();
-            LoadSchemeOfHall(hallsList.Halls[indexRow].SeatingCapacity, hallsList.Halls[indexRow].PlacesInRow);
+            if (indexRow != -1)
+            {
+                hallsList.Halls[indexRow].HallName = NameHallInput.Text;
+                hallsList.Halls[indexRow].PlacesInRow = Convert.ToInt32(PlacesInRowInput.Text);
+                hallsList.Halls[indexRow].SeatingCapacity = Convert.ToInt32(SeatingCapacityInput.Text);
+                UpdatingDataBase updating = new UpdatingDataBase();
+                updating.UpdateInDatabase(hallsList.Halls[indexRow]);
+                sourceData.ResetBindings(false); //подтверждает изменения
+                HallPlaces.Controls.Clear();
+                DeletingFromDateBase deleting = new DeletingFromDateBase();
+                deleting.DeleteFromDatabase(hallsList.Halls[indexRow].Places);
+                hallsList.Halls[indexRow].Places.Clear();
+                ReadingFromDateBase reading = new ReadingFromDateBase();
+                placesList = reading.ReadAllPlacesOfAllHalls();
+                FillingPlaces(hallsList.Halls[indexRow]);
+                LoadSchemeOfHall(hallsList.Halls[indexRow].SeatingCapacity, hallsList.Halls[indexRow].PlacesInRow);
+            }
         }
-
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            DeletingFromDateBase deleting = new DeletingFromDateBase();
-            deleting.DeleteFromDatabase(hallsList.Halls[indexRow]);
-            hallsList.Halls.RemoveAt(indexRow);
-            sourceData.ResetBindings(false);
+            ClearAllTextBoxesAndGroupBox();
+            if (indexRow != -1)
+            {
+                DeletingFromDateBase deleting = new DeletingFromDateBase();
+                deleting.DeleteFromDatabase(hallsList.Halls[indexRow]);
+                deleting.DeleteFromDatabase(hallsList.Halls[indexRow].Places);
+                hallsList.Halls.RemoveAt(indexRow);
+                ReadingFromDateBase reading = new ReadingFromDateBase();
+                placesList = reading.ReadAllPlacesOfAllHalls();
+                sourceData.ResetBindings(false);
+            }
         }
         private void LoadSchemeOfHall(int seatingCapacity, int placesInRowLimit)
-        {
-            //HallPlaces.Width = this.Width / 2;
-            //HallPlaces.Height = this.Height / 2;
-            int X = 6;
-            int Y = 19;
-            Button[] buttonArray = new Button[seatingCapacity];
-            bool notEven = false;
-            int limitPlacesInRow = placesInRowLimit;
-            int rows = 1;
-            int maxRows = (buttonArray.Length / limitPlacesInRow) + 1;
-            int lastPlaces = buttonArray.Length % limitPlacesInRow;
-            if (lastPlaces != 0)
-            {
-                notEven = true;
-                //maxRows = lastPlaces;
-            }
-            int placesInRow = 1;
-            for (int i = 0; i < buttonArray.Length; i++)
-            {
-                buttonArray[i] = new Button();
-                buttonArray[i].Size = new Size(30, 30);
-                buttonArray[i].Text = placesInRow.ToString();
-                //buttonArray[i].MouseClick += new MouseEventHandler(SelectPlaceInHall);
-                if (rows == maxRows && notEven)
-                {
-                    X += 35 * (limitPlacesInRow - lastPlaces) / 2;
-                    notEven = false;
-                }
-                buttonArray[i].Location = new Point(X, Y);
-                HallPlaces.Controls.Add(buttonArray[i]);
-                if (placesInRow != limitPlacesInRow)
-                {
-                    X += 35;
-                    placesInRow++;
-                }
-                else
-                {
-                    X += 35;
-                    Label rowLabel = new Label();
-                    rowLabel.Size = new Size(40, 30);
-                    rowLabel.Location = new Point(X, Y);
-                    rowLabel.Text = "Ряд " + rows + " ";
-                    HallPlaces.Controls.Add(rowLabel);
-                    X = 6;
-                    Y += 40;
-                    placesInRow = 1;
-                    rows++;
-                }
-                /*
-                if (HallPlaces.Width > this.Width / 2)
-                {
-                    this.Width = HallPlaces.Width + this.Width / 2;
-
-                }
-                if (HallPlaces.Height > this.Height / 2)
-                {
-                    this.Height = HallPlaces.Height + this.Height / 2;
-                }
-                */
-            }
-        }
-        private void LoadSchemeOfHall2(int seatingCapacity, int placesInRowLimit)
         {
             RowInput.Clear();
             PlaceInput.Clear();
@@ -182,7 +160,7 @@ namespace NorthCinema.UI
             for (int i = 0; i < buttonArray.Length; i++)
             {
                 buttonArray[i] = new Button[placesInRowLimit];
-                if(i == buttonArray.Length - 1 && notEven)
+                if (i == buttonArray.Length - 1 && notEven)
                 {
                     buttonArray[i] = new Button[leftPlaces];
                 }
@@ -190,7 +168,7 @@ namespace NorthCinema.UI
                 {
                     buttonArray[i][j] = new Button();
                     buttonArray[i][j].Size = new Size(30, 30);
-                    buttonArray[i][j].Name = i.ToString();
+                    buttonArray[i][j].Name = (i + 1).ToString();
                     buttonArray[i][j].Text = (j + 1).ToString();
                     buttonArray[i][j].MouseClick += new MouseEventHandler(SelectedPlaceInHall);
                     if (i == buttonArray.Length - 1 && notEven)
@@ -211,9 +189,13 @@ namespace NorthCinema.UI
                 Y += 40;
             }
         }
-        private void FillingPlaces(int hallId, int seatingCapacity, int placesInRowLimit)
+        private void FillingPlaces(Hall hall)
         {
+            int hallId = hall.HallId;
+            int seatingCapacity = hall.SeatingCapacity;
+            int placesInRowLimit = hall.PlacesInRow;
             WritingInDatabase writing = new WritingInDatabase();
+            int placeId = placesList.Places.Count() + 1;
             int rows = 0;
             bool notEven = false;
             int leftPlaces = seatingCapacity % placesInRowLimit;
@@ -233,11 +215,14 @@ namespace NorthCinema.UI
                     placesInRowLimit = leftPlaces;
                 }
                 for (int j = 1; j <= placesInRowLimit; j++)
-                { 
-                    placesList.AddPlacesInHall(placesList.Places.Count() - 1, hallId, i, j);
+                {
+                    PlaceInHall place = new PlaceInHall(placeId, hallId, i, j);
+                    hall.Places.Add(place);
+                    placesList.Places.Add(place);
+                    placeId++;
                 }
             }
-           
+            writing.WriteInDatabase(hall.Places);
             //writing.WriteInDatabase(placesList);
         }
         private void SelectedPlaceInHall(object sender, EventArgs e)
@@ -245,6 +230,20 @@ namespace NorthCinema.UI
             Button clickedButton = (Button)sender;
             RowInput.Text = clickedButton.Name;
             PlaceInput.Text = clickedButton.Text;
+        }
+        private void ClearAllTextBoxesAndGroupBox()
+        {
+            HallPlaces.Controls.Clear();
+            foreach (Control c in Controls)
+            {
+                if (c.GetType() == typeof(GroupBox))
+                    foreach (Control d in c.Controls)
+                        if (d.GetType() == typeof(TextBox))
+                            d.Text = string.Empty;
+
+                if (c.GetType() == typeof(TextBox))
+                    c.Text = string.Empty;
+            }
         }
     }
 }

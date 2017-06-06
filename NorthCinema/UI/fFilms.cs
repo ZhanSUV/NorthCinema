@@ -55,7 +55,7 @@ namespace NorthCinema.UI
         private void AddButton_Click(object sender, EventArgs e)
         {
             //sourceData.DataSource = films.Films;
-            filmsList.AddFilmInList(filmsList.Films[filmsList.Films.Count()-1].FilmId + 1, NameFilmInput.Text, Convert.ToInt32(FilmLengthInput.Text),
+            filmsList.AddFilmInList(filmsList.Films.Max().FilmId + 1, NameFilmInput.Text, Convert.ToInt32(FilmLengthInput.Text),
                  Convert.ToInt32(AgeLimitInput.Text), Convert.ToInt32(PriceInput.Text));
             WritingInDatabase writing = new WritingInDatabase();
             writing.WriteInDatabase(filmsList.Films.Last());

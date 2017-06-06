@@ -117,13 +117,8 @@
     <Compile Include="Тесты\Domain\StatusTicket.cs" />
     <Compile Include="Тесты\Domain\TicketSale.cs" />
     <Compile Include="Тесты\Domain\TotalPercent.cs" />
-    <Compile Include="Domain\EditCashiers.cs" />
-    <Compile Include="Domain\EditFilms.cs" />
-    <Compile Include="Domain\EditHalls.cs" />
-    <Compile Include="Domain\EditSessions.cs" />
     <Compile Include="Domain\Models\CalendarOfDaysOfSessions.cs" />
     <Compile Include="Domain\Models\DayOfSessions.cs" />
-    <Compile Include="Domain\Models\EditPercents.cs" />
     <Compile Include="Domain\Models\Film.cs" />
     <Compile Include="Domain\Models\Hall.cs" />
     <Compile Include="Domain\Models\ListOfCashiers.cs" />
@@ -131,7 +126,6 @@
     <Compile Include="Domain\Models\ListOfHalls.cs" />
     <Compile Include="Domain\Models\ListOfPercents.cs" />
     <Compile Include="Domain\Models\ListOfSessions.cs" />
-    <Compile Include="Domain\TicketSale.cs" />
     <Compile Include="Domain\Models\Percent.cs" />
     <Compile Include="Domain\Models\PlaceInHall.cs" />
     <Compile Include="Domain\Models\Session.cs" />
@@ -140,11 +134,8 @@
     <Compile Include="Domain\Users\AuthorisedUser.cs" />
     <Compile Include="Domain\Users\CashierUser.cs" />
     <Compile Include="Domain\Users\VisitorUser.cs" />
-    <Compile Include="Domain\VisitorUser.cs" />
     <Compile Include="Infrastructure\CheckingAuthorization.cs" />
     <Compile Include="Infrastructure\ReadingFromDateBase.cs" />
-    <Compile Include="Domain\WatchCalendar.cs" />
-    <Compile Include="Domain\WatchPercent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\fAuthorization.cs">

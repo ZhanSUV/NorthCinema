@@ -19,5 +19,6 @@ namespace NorthCinema.Domain.Models
         public string HallName { get; set; }
         public int SeatingCapacity { get; set; }
         public int PlacesInRow { get; set; }
+        public List<PlaceInHall> Places = new List<PlaceInHall>();
     }
 }

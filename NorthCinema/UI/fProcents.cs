@@ -45,7 +45,7 @@ namespace NorthCinema.UI
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            percentList.AddPercentInList(percentList.Percents[percentList.Percents.Count() - 1].PercentId,
+            percentList.AddPercentInList(percentList.Percents.Max().PercentId + 1,
                 DiscountOrMarkupInput.Text, DescriptionInput.Text, Convert.ToInt32(PercentInput.Text));
             WritingInDatabase writing = new WritingInDatabase();
             writing.WriteInDatabase(percentList.Percents.Last());

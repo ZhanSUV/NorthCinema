@@ -38,6 +38,32 @@ namespace NorthCinema.Infrastructure
                 command.ExecuteNonQuery();
             }
         }
+        public void DeleteFromDatabase(PlaceInHall place)
+        {
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                SqlCommand command = new SqlCommand(
+                ("DELETE FROM [PLACESINHALLS] WHERE PLACE_ID = @PLACE_ID"),
+                connectToDateBase);
+                command.Connection.Open();
+                command.Parameters.AddWithValue("@PLACE_ID", place.PlaceId);
+                command.ExecuteNonQuery();
+            }
+        }
+        public void DeleteFromDatabase(List<PlaceInHall> places)
+        {
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                SqlCommand command = new SqlCommand(
+                ("DELETE FROM [PLACESINHALLS] WHERE HALL_ID = @HALL_ID"),
+                connectToDateBase);
+                command.Connection.Open();
+                command.Parameters.AddWithValue("@HALL_ID", places[0].HallId);
+                command.ExecuteNonQuery();
+            }
+        }
         public void DeleteFromDatabase(CashierUser cashier)
         {
             SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);

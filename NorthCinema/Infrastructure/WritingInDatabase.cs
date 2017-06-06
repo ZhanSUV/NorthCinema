@@ -35,17 +35,18 @@ namespace NorthCinema.Infrastructure
             using (connectToDateBase)
             {
                 SqlCommand command = new SqlCommand(
-                ("INSERT INTO [HALLS] (NAME_HALL, SEATING_CAPACITY, PLACES_IN_ROW)" +
-                "VALUES (@NAME_HALL, @SEATING_CAPACITY, @PLACES_IN_ROW);"),
+                ("INSERT INTO [HALLS] (HALL_ID, NAME_HALL, SEATING_CAPACITY, PLACES_IN_ROW)" +
+                "VALUES (@HALL_ID, @NAME_HALL, @SEATING_CAPACITY, @PLACES_IN_ROW);"),
                 connectToDateBase);
                 command.Connection.Open();
+                command.Parameters.AddWithValue("@HALL_ID", hall.HallId);
                 command.Parameters.AddWithValue("@NAME_HALL", hall.HallName);
                 command.Parameters.AddWithValue("@SEATING_CAPACITY", hall.SeatingCapacity);
                 command.Parameters.AddWithValue("@PLACES_IN_ROW", hall.PlacesInRow);
                 command.ExecuteNonQuery();
             }
         }
-        public void WriteInDatabase(PlaceInHall places)
+        public void WriteInDatabase(PlaceInHall place)
         {
             SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
             using (connectToDateBase)
@@ -55,10 +56,31 @@ namespace NorthCinema.Infrastructure
                 "VALUES (@HALL_ID, @ROW_PLACES, @PLACES);"),
                 connectToDateBase);
                 command.Connection.Open();
-                command.Parameters.AddWithValue("@HALL_ID", places.HallId);
-                command.Parameters.AddWithValue("@ROW_PLACES", places.Row);
-                command.Parameters.AddWithValue("@PLACE", places.PlaceNumber);
+                command.Parameters.AddWithValue("@HALL_ID", place.HallId);
+                command.Parameters.AddWithValue("@ROW_PLACES", place.Row);
+                command.Parameters.AddWithValue("@PLACE", place.PlaceNumber);
                 command.ExecuteNonQuery();
+            }
+        }
+        public void WriteInDatabase(List<PlaceInHall> places)
+        {
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                for (int i = 0; i < places.Count; i++)
+                {
+                    SqlCommand command = new SqlCommand(
+                    ("INSERT INTO [PLACESINHALLS] (PLACE_ID ,HALL_ID, ROW_PLACES, PLACE)" +
+                    "VALUES (@PLACE_ID, @HALL_ID, @ROW_PLACES, @PLACE);"),
+                    connectToDateBase);
+                    command.Connection.Open();
+                    command.Parameters.AddWithValue("@PLACE_ID", places[i].PlaceId);
+                    command.Parameters.AddWithValue("@HALL_ID", places[i].HallId);
+                    command.Parameters.AddWithValue("@ROW_PLACES", places[i].Row);
+                    command.Parameters.AddWithValue("@PLACE", places[i].PlaceNumber);
+                    command.ExecuteNonQuery();
+                    command.Connection.Close();
+                }
             }
         }
         public void WriteInDatabase(CashierUser cashier)
