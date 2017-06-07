@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NorthCinema.UI;
 
 namespace NorthCinema
 {
@@ -16,7 +17,7 @@ namespace NorthCinema
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new UI.MainMenu());
+            Application.Run(new fMainMenu());
         }
     }
 }

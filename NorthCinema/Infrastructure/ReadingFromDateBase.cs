@@ -215,5 +215,46 @@ namespace NorthCinema.Infrastructure
             ListOfPercents percents = new ListOfPercents(percentsList);
             return percents;
         }
+        public ListOfTickets ReadTickets()
+        {
+            Hall hall;
+            Film film;
+            Session session;
+            PlaceInHall place;
+            List<Ticket> ticketsList = new List<Ticket>();
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                SqlCommand command = new SqlCommand(
+                "SELECT TICKET_ID, [TICKETSALES].SESSION_ID, [TICKETSALES].PLACE_ID, AGE_VISITOR, TOTAL_COST, " + // 4
+                "[SESSIONS].SESSION_ID, [SESSIONS].HALL_ID, [SESSIONS].[FILM_ID], DATE_SESSION, TIME_SESSION, " + // 9
+                "NAME_HALL, SEATING_CAPACITY, PLACES_IN_ROW,  " +  //12
+                "[PLACESINHALLS].PLACE_ID, ROW_PLACES, PLACE, " +  //15
+                "NAME_FILM, LENGTH_FILM, AGE_LIMIT, TICKET_PRICE " + //19
+                "FROM [TICKETSALES], [SESSIONS], [PLACESINHALLS], [HALLS], [FILMS]" + 
+                "WHERE [TICKETSALES].SESSION_ID = [SESSIONS].SESSION_ID AND [TICKETSALES].PLACE_ID = [PLACESINHALLS].PLACE_ID " +
+                "AND [SESSIONS].HALL_ID = [HALLS].HALL_ID AND [SESSIONS].[FILM_ID] = [FILMS].[FILM_ID] " +
+                "AND [PLACESINHALLS].HALL_ID = [HALLS].HALL_ID;",
+                connectToDateBase);
+                connectToDateBase.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        hall = new Hall(reader.GetInt32(6), reader.GetString(10), reader.GetInt32(11), reader.GetInt32(12));
+                        place = new PlaceInHall(reader.GetInt32(13), reader.GetInt32(6), reader.GetInt32(14), reader.GetInt32(15));
+                        film = new Film(reader.GetInt32(7), reader.GetString(16), reader.GetInt32(17),
+                                reader.GetInt32(18), reader.GetInt32(19));
+                        session = new Session(reader.GetInt32(5), film, hall, reader.GetDateTime(8), reader.GetTimeSpan(9));
+                        Ticket ticket = new Ticket(reader.GetInt32(0), session, place, reader.GetDateTime(3), reader.GetInt32(4));
+                        ticketsList.Add(ticket);
+                    }
+                }
+                reader.Close();
+            }
+            ListOfTickets tickets = new ListOfTickets(ticketsList);
+            return tickets;
+        }
     }
 }

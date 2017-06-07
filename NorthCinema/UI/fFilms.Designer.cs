@@ -54,6 +54,7 @@
             this.dataGridViewFilm.MultiSelect = false;
             this.dataGridViewFilm.Name = "dataGridViewFilm";
             this.dataGridViewFilm.ReadOnly = true;
+            this.dataGridViewFilm.RowHeadersVisible = false;
             this.dataGridViewFilm.Size = new System.Drawing.Size(520, 166);
             this.dataGridViewFilm.TabIndex = 0;
             this.dataGridViewFilm.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewFilm_CellClick);

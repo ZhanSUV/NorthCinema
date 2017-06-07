@@ -209,7 +209,7 @@
             this.FindButton.Name = "FindButton";
             this.FindButton.Size = new System.Drawing.Size(164, 23);
             this.FindButton.TabIndex = 23;
-            this.FindButton.Text = "Поиск по названию";
+            this.FindButton.Text = "Фильтр по названию";
             this.FindButton.UseVisualStyleBackColor = true;
             this.FindButton.Click += new System.EventHandler(this.FindButton_Click);
             // 
@@ -219,7 +219,7 @@
             this.FilterNameFilmWithDate.Name = "FilterNameFilmWithDate";
             this.FilterNameFilmWithDate.Size = new System.Drawing.Size(164, 23);
             this.FilterNameFilmWithDate.TabIndex = 24;
-            this.FilterNameFilmWithDate.Text = "Поиск по названию и дате";
+            this.FilterNameFilmWithDate.Text = "Фильтр по названию и дате";
             this.FilterNameFilmWithDate.UseVisualStyleBackColor = true;
             this.FilterNameFilmWithDate.Click += new System.EventHandler(this.FilterNameFilmWithDate_Click);
             // 

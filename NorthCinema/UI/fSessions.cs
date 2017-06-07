@@ -118,41 +118,6 @@ namespace NorthCinema.UI
             dataGridViewSessions.DataSource = table;
             (dataGridViewSessions.DataSource as DataTable).DefaultView.RowFilter = string.Format("Isnull(Сеанс, '') <> ''");
             dataGridViewSessions.Columns[0].Visible = false;
-            /*
-            dataGridViewSessions.ColumnCount = 5;
-            dataGridViewSessions.Columns[0].Name = "Session ID";
-            dataGridViewSessions.Columns[0].Visible = false;
-            dataGridViewSessions.Columns[1].Name = "Фильм";
-            dataGridViewSessions.Columns[2].Name = "Залл";
-            dataGridViewSessions.Columns[3].Name = "Дата";
-            dataGridViewSessions.Columns[4].Name = "Время";
-            for (int i = 0; i < dataGridViewSessions.ColumnCount; i++)
-            {
-                for (int j = 0; j < sessionsList.Sessions.Count; j++)
-                {
-                    if (i == 0)
-                    {
-                        dataGridViewSessions[i, j].Value = sessionsList.Sessions[j].SessionId;
-                    }
-                    else if (i == 1)
-                    {
-                        dataGridViewSessions[i, j].Value = sessionsList.Sessions[j].FilmSession.FilmName;
-                    }
-                    else if (i == 2)
-                    {
-                        dataGridViewSessions[i, j].Value = sessionsList.Sessions[j].HallSession.HallName;
-                    }
-                    else if (i == 3)
-                    {
-                        dataGridViewSessions[i, j].Value = sessionsList.Sessions[j].DateSession.Date.ToShortDateString();
-                    }
-                    else
-                    {
-                        dataGridViewSessions[i, j].Value = sessionsList.Sessions[j].TimeSession;
-                    }
-                }
-            }
-            */
         }
 
         private void UpdateButton_Click(object sender, EventArgs e)

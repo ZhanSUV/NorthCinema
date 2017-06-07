@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NorthCinema.UI;
 
-namespace NorthCinema.UI
+namespace NorthCinema
 {
-    public partial class MainMenu : Form
+    public partial class fMainMenu : Form
     {
-        public MainMenu()
+        public fMainMenu()
         {
             InitializeComponent();
         }

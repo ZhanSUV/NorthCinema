@@ -74,6 +74,8 @@
             this.dataGridViewPercents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPercents.Location = new System.Drawing.Point(28, 142);
             this.dataGridViewPercents.Name = "dataGridViewPercents";
+            this.dataGridViewPercents.ReadOnly = true;
+            this.dataGridViewPercents.RowHeadersVisible = false;
             this.dataGridViewPercents.Size = new System.Drawing.Size(494, 172);
             this.dataGridViewPercents.TabIndex = 3;
             this.dataGridViewPercents.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPercents_CellClick);

@@ -30,6 +30,7 @@
         {
             this.FilmButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
+            this.TicketButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // FilmButton
@@ -52,11 +53,22 @@
             this.ExitButton.UseVisualStyleBackColor = true;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
+            // TicketButton
+            // 
+            this.TicketButton.Location = new System.Drawing.Point(109, 78);
+            this.TicketButton.Name = "TicketButton";
+            this.TicketButton.Size = new System.Drawing.Size(75, 23);
+            this.TicketButton.TabIndex = 2;
+            this.TicketButton.Text = "Билеты";
+            this.TicketButton.UseVisualStyleBackColor = true;
+            this.TicketButton.Click += new System.EventHandler(this.TicketButton_Click);
+            // 
             // fCashierConsoleUnit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.TicketButton);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.FilmButton);
             this.Name = "fCashierConsoleUnit";
@@ -70,5 +82,6 @@
 
         private System.Windows.Forms.Button FilmButton;
         private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.Button TicketButton;
     }
 }

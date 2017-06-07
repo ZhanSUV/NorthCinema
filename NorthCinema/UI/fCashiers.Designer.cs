@@ -133,6 +133,7 @@
             this.dataGridViewCashiers.MultiSelect = false;
             this.dataGridViewCashiers.Name = "dataGridViewCashiers";
             this.dataGridViewCashiers.ReadOnly = true;
+            this.dataGridViewCashiers.RowHeadersVisible = false;
             this.dataGridViewCashiers.Size = new System.Drawing.Size(383, 196);
             this.dataGridViewCashiers.TabIndex = 10;
             this.dataGridViewCashiers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCashiers_CellClick);

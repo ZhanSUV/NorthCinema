@@ -1,6 +1,6 @@
-﻿namespace NorthCinema.UI
+﻿namespace NorthCinema
 {
-    partial class MainMenu
+    partial class fMainMenu
     {
         /// <summary>
         /// Обязательная переменная конструктора.

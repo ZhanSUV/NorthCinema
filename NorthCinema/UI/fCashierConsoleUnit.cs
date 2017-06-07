@@ -31,5 +31,13 @@ namespace NorthCinema.UI
         {
             this.Close();
         }
+
+        private void TicketButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            fTickets console = new fTickets();
+            console.ShowDialog();
+            this.Show();
+        }
     }
 }

@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="App\Logining.cs" />
     <Compile Include="Domain\Models\ListOfPlacesInHalls.cs" />
+    <Compile Include="Domain\Models\ListOfTickets.cs" />
     <Compile Include="Infrastructure\DeletingFromDateBase.cs" />
     <Compile Include="Infrastructure\UpdatingDataBase.cs" />
     <Compile Include="Infrastructure\WritingInDatabase.cs" />
@@ -113,6 +114,12 @@
     <Compile Include="UI\fSessions.Designer.cs">
       <DependentUpon>fSessions.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\fTickets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\fTickets.Designer.cs">
+      <DependentUpon>fTickets.cs</DependentUpon>
+    </Compile>
     <Compile Include="Тесты\Domain\Country.cs" />
     <Compile Include="Тесты\Domain\Employee.cs" />
     <Compile Include="Тесты\Domain\Format.cs" />
@@ -150,11 +157,11 @@
     <Compile Include="UI\fAuthorization.Designer.cs">
       <DependentUpon>fAuthorization.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\fMain Menu.cs">
+    <Compile Include="UI\fMainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\fMain Menu.Designer.cs">
-      <DependentUpon>fMain Menu.cs</DependentUpon>
+    <Compile Include="UI\fMainMenu.Designer.cs">
+      <DependentUpon>fMainMenu.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -186,14 +193,17 @@
     <EmbeddedResource Include="UI\fHalls.resx">
       <DependentUpon>fHalls.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\fMain Menu.resx">
-      <DependentUpon>fMain Menu.cs</DependentUpon>
+    <EmbeddedResource Include="UI\fMainMenu.resx">
+      <DependentUpon>fMainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\fProcents.resx">
       <DependentUpon>fProcents.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\fSessions.resx">
       <DependentUpon>fSessions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\fTickets.resx">
+      <DependentUpon>fTickets.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\NorthCinema.Domain.Models.ListOfFilms.datasource" />
     <None Include="Properties\Settings.settings">
