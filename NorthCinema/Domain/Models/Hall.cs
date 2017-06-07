@@ -23,7 +23,7 @@ namespace NorthCinema.Domain.Models
         public int PlacesInRow { get; set; }
         public List<PlaceInHall> Places = new List<PlaceInHall>();
         
-        public void CreatePlaces()
+        private void CreatePlaces()
         {
             ListOfPlacesInHalls placesList;
             ReadingFromDateBase reading = new ReadingFromDateBase();

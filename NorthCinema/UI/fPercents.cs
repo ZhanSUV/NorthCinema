@@ -13,16 +13,18 @@ using NorthCinema.Infrastructure;
 
 namespace NorthCinema.UI
 {
-    public partial class fProcents : Form
+    public partial class fPercents : Form
     {
+        AuthorisedUser user;
         ListOfPercents percentList;
         BindingSource sourceData = new BindingSource();
         int indexRow;
-        public fProcents(object user)
+        public fPercents(AuthorisedUser user)
         {
             InitializeComponent();
             if (user.GetType() == typeof(AdminUser))
             {
+                this.user = user;
                 ReadingFromDateBase reading = new ReadingFromDateBase();
                 percentList = reading.ReadPercentages();
                 sourceData.DataSource = percentList.Percents;
@@ -34,6 +36,18 @@ namespace NorthCinema.UI
             }
             else
             {
+                this.user = user;
+                ReadingFromDateBase reading = new ReadingFromDateBase();
+                percentList = reading.ReadPercentages();
+                sourceData.DataSource = percentList.Percents;
+                dataGridViewPercents.DataSource = sourceData;
+                dataGridViewPercents.Columns[0].Visible = false;
+                dataGridViewPercents.Columns[1].HeaderText = "Скидка/Наценка";
+                dataGridViewPercents.Columns[2].HeaderText = "Описание";
+                dataGridViewPercents.Columns[3].HeaderText = "Процент";
+                AddButton.Visible = false;
+                UpdateButton.Visible = false;
+                DeleteButton.Visible = false;
                 this.Close();
             }
         }

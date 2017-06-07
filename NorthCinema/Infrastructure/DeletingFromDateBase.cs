@@ -116,5 +116,31 @@ namespace NorthCinema.Infrastructure
                 command.ExecuteNonQuery();
             }
         }
+        public void DeleteFromDatabase(StatusTicket statusTicket)
+        {
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                SqlCommand command = new SqlCommand(
+                ("DELETE FROM [STATUSTICKETS] WHERE @STATUS_ID = STATUS_ID;"),
+                connectToDateBase);
+                command.Connection.Open();
+                command.Parameters.AddWithValue("@STATUS_ID", statusTicket.StatusId);
+                command.ExecuteNonQuery();
+            }
+        }
+        public void DeleteFromDatabase(Ticket ticket)
+        {
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                SqlCommand command = new SqlCommand(
+                ("DELETE FROM [TICKETSALES] WHERE @TICKET_ID = TICKET_ID;"),
+                connectToDateBase);
+                command.Connection.Open();
+                command.Parameters.AddWithValue("@TICKET_ID", ticket.TicketId);
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }

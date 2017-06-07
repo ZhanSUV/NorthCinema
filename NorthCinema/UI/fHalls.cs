@@ -15,14 +15,14 @@ namespace NorthCinema.UI
 {
     public partial class fHalls : Form
     {
-        object user;
+        AuthorisedUser user;
         Session session;
         Button[][] buttonArray = new Button[1][];
         ListOfPlacesInHalls placesList;
         ListOfHalls hallsList;
         BindingSource sourceData = new BindingSource();
         int indexRow;
-        public fHalls(object user)
+        public fHalls(AuthorisedUser user)
         {
             InitializeComponent();
             if (user.GetType() == typeof(AdminUser))
@@ -30,10 +30,6 @@ namespace NorthCinema.UI
                 this.user = user;
                 ReadingFromDateBase reading = new ReadingFromDateBase();
                 hallsList = reading.ReadHalls();
-                for (int i = 0; i < hallsList.Halls.Count; i++)
-                {
-                    hallsList.Halls[i].Places = reading.ReadPlacesInHall(hallsList.Halls[i].HallId);
-                }
                 placesList = reading.ReadAllPlacesOfAllHalls();
                 sourceData.DataSource = hallsList.Halls;
                 dataGridViewHalls.DataSource = sourceData;
@@ -47,6 +43,7 @@ namespace NorthCinema.UI
                 this.user = user; 
                 ReadingFromDateBase reading = new ReadingFromDateBase();
                 hallsList = reading.ReadHalls();
+                placesList = reading.ReadAllPlacesOfAllHalls();
                 sourceData.DataSource = hallsList.Halls;
                 dataGridViewHalls.DataSource = sourceData;
                 dataGridViewHalls.Columns[0].Visible = false;
@@ -58,7 +55,7 @@ namespace NorthCinema.UI
                 DeleteButton.Visible = false;
             }
         }
-        public fHalls(object user, Session session)
+        public fHalls(AuthorisedUser user, Session session)
         {
             InitializeComponent();
             this.user = user;
@@ -255,7 +252,7 @@ namespace NorthCinema.UI
             if (user.GetType() == typeof(CashierUser))
             {
                 this.Hide();
-                fTickets console = new fTickets(session, Convert.ToInt32(RowInput.Text), 
+                fTickets console = new fTickets(user, session, Convert.ToInt32(RowInput.Text), 
                     Convert.ToInt32(PlaceInput.Text), session.FilmSession.Price);
                 console.ShowDialog();
                 this.Show();

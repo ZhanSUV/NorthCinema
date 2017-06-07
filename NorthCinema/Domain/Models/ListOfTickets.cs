@@ -13,5 +13,10 @@ namespace NorthCinema.Domain.Models
             Tickets = ticketList;
         }
         public List<Ticket> Tickets { get; set; }
+        public void AddTicketInList(int ticketId, Session ticketSession, int place, int row, DateTime ageVisitor, double price)
+        {
+            Ticket ticket = new Ticket(ticketId, ticketSession, place, row, ageVisitor, price);
+            Tickets.Add(ticket);
+        }
     }
 }

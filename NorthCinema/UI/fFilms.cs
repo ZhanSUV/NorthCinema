@@ -15,14 +15,16 @@ namespace NorthCinema.UI
 {
     public partial class fAdminFilms : Form
     {
+        AuthorisedUser user;
         ListOfFilms filmsList;
         BindingSource sourceData = new BindingSource();
         int indexRow;
-        public fAdminFilms(object user)
+        public fAdminFilms(AuthorisedUser user)
         {
             InitializeComponent();
             if (user.GetType() == typeof(AdminUser))
             {
+                this.user = user;
                 //класс, считывающий данные из бд и это в List засунуть; 
                 ReadingFromDateBase reading = new ReadingFromDateBase();
                 filmsList = reading.ReadFilms();
@@ -36,6 +38,7 @@ namespace NorthCinema.UI
             }
             else
             {
+                this.user = user;
                 //класс, считывающий данные из бд и это в List засунуть; 
                 ReadingFromDateBase reading = new ReadingFromDateBase();
                 filmsList = reading.ReadFilms();

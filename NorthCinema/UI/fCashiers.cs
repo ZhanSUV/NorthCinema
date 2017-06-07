@@ -15,14 +15,16 @@ namespace NorthCinema.UI
 {
     public partial class fCashiers : Form
     {
+        AuthorisedUser user;
         ListOfCashiers cashiersList;
         BindingSource sourceData = new BindingSource();
         int indexRow;
-        public fCashiers(object user)
+        public fCashiers(AuthorisedUser user)
         {
             InitializeComponent();
             if (user.GetType() == typeof(AdminUser))
             {
+                this.user = user;
                 //класс, считывающий данные из бд и это в List засунуть; 
                 ReadingFromDateBase reading = new ReadingFromDateBase();
                 reading.ReadFromDateBase();

@@ -1,6 +1,6 @@
 ﻿namespace NorthCinema.UI
 {
-    partial class fProcents
+    partial class fPercents
     {
         /// <summary>
         /// Required designer variable.

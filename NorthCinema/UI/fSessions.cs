@@ -20,10 +20,10 @@ namespace NorthCinema.UI
         ListOfHalls hallList;
         List<int> filmIds = new List<int>();
         List<int> hallIds = new List<int>();
-        object user;
+        AuthorisedUser user;
         BindingSource sourceData = new BindingSource();
         int indexRow;
-        public fSessions(object user)
+        public fSessions(AuthorisedUser user)
         {
             this.user = user;
             InitializeComponent();
@@ -49,6 +49,7 @@ namespace NorthCinema.UI
             }
             else
             {
+                this.user = user;
                 ReadingFromDateBase reading = new ReadingFromDateBase();
                 sessionsList = reading.ReadSessions();
                 foreach (var i in sessionsList.Sessions)

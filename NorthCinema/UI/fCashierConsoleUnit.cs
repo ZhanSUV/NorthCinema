@@ -35,7 +35,7 @@ namespace NorthCinema.UI
         private void TicketButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            fTickets console = new fTickets();
+            fTickets console = new fTickets(cashier);
             console.ShowDialog();
             this.Show();
         }

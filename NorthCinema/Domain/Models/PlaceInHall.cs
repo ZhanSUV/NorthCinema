@@ -15,9 +15,9 @@ namespace NorthCinema.Domain.Models
             Row = row;
             PlaceNumber = placeNumber;
         }
-        public int PlaceId { get; private set; }
-        public int HallId { get; private set; }
-        public int Row { get; private set; }
-        public int PlaceNumber { get; private set; }
+        public int PlaceId { get; set; }
+        public int HallId { get; set; }
+        public int Row { get; set; }
+        public int PlaceNumber { get; set; }
     }
 }

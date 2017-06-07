@@ -46,7 +46,9 @@
             this.RowInput = new System.Windows.Forms.TextBox();
             this.PlaceNumberInput = new System.Windows.Forms.TextBox();
             this.AgeVisitorLabel = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.AgeVistorPicker = new System.Windows.Forms.DateTimePicker();
+            this.DatePicker = new System.Windows.Forms.DateTimePicker();
+            this.TimePicker = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTickets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPercents)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +59,7 @@
             this.dataGridViewTickets.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewTickets.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewTickets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTickets.Location = new System.Drawing.Point(21, 164);
+            this.dataGridViewTickets.Location = new System.Drawing.Point(21, 205);
             this.dataGridViewTickets.MultiSelect = false;
             this.dataGridViewTickets.Name = "dataGridViewTickets";
             this.dataGridViewTickets.ReadOnly = true;
@@ -109,16 +111,17 @@
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(21, 338);
+            this.AddButton.Location = new System.Drawing.Point(21, 379);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(75, 23);
             this.AddButton.TabIndex = 11;
             this.AddButton.Text = "Добавить";
             this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(315, 338);
+            this.DeleteButton.Location = new System.Drawing.Point(315, 379);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(75, 23);
             this.DeleteButton.TabIndex = 12;
@@ -127,7 +130,7 @@
             // 
             // UpdateButton
             // 
-            this.UpdateButton.Location = new System.Drawing.Point(170, 338);
+            this.UpdateButton.Location = new System.Drawing.Point(170, 379);
             this.UpdateButton.Name = "UpdateButton";
             this.UpdateButton.Size = new System.Drawing.Size(75, 23);
             this.UpdateButton.TabIndex = 13;
@@ -136,7 +139,7 @@
             // 
             // ExitButton
             // 
-            this.ExitButton.Location = new System.Drawing.Point(315, 380);
+            this.ExitButton.Location = new System.Drawing.Point(315, 421);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(75, 23);
             this.ExitButton.TabIndex = 14;
@@ -148,7 +151,7 @@
             // 
             this.dataGridViewPercents.AllowUserToAddRows = false;
             this.dataGridViewPercents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPercents.Location = new System.Drawing.Point(426, 164);
+            this.dataGridViewPercents.Location = new System.Drawing.Point(426, 205);
             this.dataGridViewPercents.MultiSelect = false;
             this.dataGridViewPercents.Name = "dataGridViewPercents";
             this.dataGridViewPercents.ReadOnly = true;
@@ -212,14 +215,34 @@
             this.AgeVisitorLabel.TabIndex = 23;
             this.AgeVisitorLabel.Text = "Дата рождения посетителя";
             // 
-            // dateTimePicker1
+            // AgeVistorPicker
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(113, 133);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.ShowUpDown = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(100, 20);
-            this.dateTimePicker1.TabIndex = 25;
+            this.AgeVistorPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.AgeVistorPicker.Location = new System.Drawing.Point(113, 133);
+            this.AgeVistorPicker.Name = "AgeVistorPicker";
+            this.AgeVistorPicker.ShowUpDown = true;
+            this.AgeVistorPicker.Size = new System.Drawing.Size(100, 20);
+            this.AgeVistorPicker.TabIndex = 25;
+            // 
+            // DatePicker
+            // 
+            this.DatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DatePicker.Location = new System.Drawing.Point(22, 179);
+            this.DatePicker.Name = "DatePicker";
+            this.DatePicker.Size = new System.Drawing.Size(200, 20);
+            this.DatePicker.TabIndex = 26;
+            this.DatePicker.Value = new System.DateTime(2017, 6, 7, 20, 28, 11, 0);
+            // 
+            // TimePicker
+            // 
+            this.TimePicker.CustomFormat = "HH:mm";
+            this.TimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.TimePicker.Location = new System.Drawing.Point(241, 179);
+            this.TimePicker.Name = "TimePicker";
+            this.TimePicker.ShowUpDown = true;
+            this.TimePicker.Size = new System.Drawing.Size(149, 20);
+            this.TimePicker.TabIndex = 27;
+            this.TimePicker.Value = new System.DateTime(2017, 6, 7, 20, 28, 18, 0);
             // 
             // fTickets
             // 
@@ -227,8 +250,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(771, 413);
-            this.Controls.Add(this.dateTimePicker1);
+            this.ClientSize = new System.Drawing.Size(771, 466);
+            this.Controls.Add(this.TimePicker);
+            this.Controls.Add(this.DatePicker);
+            this.Controls.Add(this.AgeVistorPicker);
             this.Controls.Add(this.AgeVisitorLabel);
             this.Controls.Add(this.PlaceNumberInput);
             this.Controls.Add(this.RowInput);
@@ -277,6 +302,8 @@
         private System.Windows.Forms.TextBox RowInput;
         private System.Windows.Forms.TextBox PlaceNumberInput;
         private System.Windows.Forms.Label AgeVisitorLabel;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker AgeVistorPicker;
+        private System.Windows.Forms.DateTimePicker DatePicker;
+        private System.Windows.Forms.DateTimePicker TimePicker;
     }
 }

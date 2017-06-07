@@ -143,30 +143,6 @@ namespace NorthCinema.Infrastructure
             ListOfHalls halls = new ListOfHalls(hallsList);
             return halls;
         }
-        public List<PlaceInHall> ReadPlacesInHall(int hallId)
-        {
-            List<PlaceInHall> placesList = new List<PlaceInHall>();
-            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
-            using (connectToDateBase)
-            {
-                SqlCommand command = new SqlCommand(
-                "SELECT PLACE_ID, HALL_ID, ROW_PLACES, PLACE FROM [PLACESINHALLS] WHERE HALL_ID = @HALL_ID;",
-                connectToDateBase);
-                connectToDateBase.Open();
-                command.Parameters.AddWithValue("@HALL_ID", hallId);
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        PlaceInHall place = new PlaceInHall(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3));
-                        placesList.Add(place);
-                    }
-                }
-                reader.Close();
-            }
-            return placesList;
-        }
         public ListOfPlacesInHalls ReadAllPlacesOfAllHalls()
         {
             List<PlaceInHall> placesList = new List<PlaceInHall>();
@@ -247,7 +223,7 @@ namespace NorthCinema.Infrastructure
                         film = new Film(reader.GetInt32(7), reader.GetString(16), reader.GetInt32(17),
                                 reader.GetInt32(18), reader.GetInt32(19));
                         session = new Session(reader.GetInt32(5), film, hall, reader.GetDateTime(8), reader.GetTimeSpan(9));
-                        Ticket ticket = new Ticket(reader.GetInt32(0), session, place, reader.GetDateTime(3), reader.GetInt32(4));
+                        Ticket ticket = new Ticket(reader.GetInt32(0), session, place.PlaceNumber, place.Row, reader.GetDateTime(3), reader.GetInt32(4));
                         ticketsList.Add(ticket);
                     }
                 }
@@ -279,6 +255,31 @@ namespace NorthCinema.Infrastructure
             }
             ListOfTotalPercents totalPercents = new ListOfTotalPercents(totalPercentList);
             return totalPercents;
+        }
+        public ListOfStatusTickets ReadStatusTickets()
+        {
+            List<StatusTicket> statusTicketList = new List<StatusTicket>();
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                SqlCommand command = new SqlCommand(
+                "SELECT STATUS_ID, USER_ID, TICKET_ID, STATUS_TICKET, DATE_CHANGE, TIME_CHANGE FROM [STATUSTICKETS];",
+                connectToDateBase);
+                connectToDateBase.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        StatusTicket statusTicket = new StatusTicket(reader.GetInt32(0), reader.GetInt32(1), 
+                            reader.GetInt32(2), reader.GetString(3), reader.GetDateTime(4), reader.GetTimeSpan(5));
+                        statusTicketList.Add(statusTicket);
+                    }
+                }
+                reader.Close();
+            }
+            ListOfStatusTickets statusTickets = new ListOfStatusTickets(statusTicketList);
+            return statusTickets;
         }
     }
 }

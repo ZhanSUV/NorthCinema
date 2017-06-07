@@ -60,7 +60,7 @@ namespace NorthCinema.UI
         private void Percent_Click(object sender, EventArgs e)
         {
             this.Hide();
-            fProcents console = new fProcents(admin);
+            fPercents console = new fPercents(admin);
             console.ShowDialog();
             this.Show();
         }

@@ -15,32 +15,42 @@ namespace NorthCinema.UI
 {
     public partial class fTickets : Form
     {
+        AuthorisedUser user;
         ListOfTickets ticketsList;
         ListOfPercents percentsList;
+        ListOfStatusTickets statusTicketList;
         ListOfTotalPercents totalPercentList;
+        ListOfSessions sessionList;
         BindingSource sourceData = new BindingSource();
         int indexRow;
-        public fTickets()
+        public fTickets(AuthorisedUser user)
         {
             InitializeComponent();
+            this.user = user;
             ReadingFromDateBase reading = new ReadingFromDateBase();
             ticketsList = reading.ReadTickets();
             percentsList = reading.ReadPercentages();
             totalPercentList = reading.ReadTotalPercents();
+            statusTicketList = reading.ReadStatusTickets();
+            sessionList = reading.ReadSessions();
             LoadDataGridView();
         }
-        public fTickets(Session session, int row, int placeNumber, double price)
+        public fTickets(AuthorisedUser user, Session session, int row, int placeNumber, double price)
         {
             InitializeComponent();
+            this.user = user;
             ReadingFromDateBase reading = new ReadingFromDateBase();
             ticketsList = reading.ReadTickets();
             percentsList = reading.ReadPercentages();
             totalPercentList = reading.ReadTotalPercents();
+            statusTicketList = reading.ReadStatusTickets();
+            sessionList = reading.ReadSessions();
             LoadDataGridView();
             SessionInput.Text = session.FilmSession.FilmName;
             RowInput.Text = row.ToString();
             PlaceNumberInput.Text = placeNumber.ToString();
             PriceInput.Text = price.ToString();
+            TicketInput.Text = (ticketsList.Tickets.Count() + 1).ToString();
         }
         private void ExitButton_Click(object sender, EventArgs e)
         {
@@ -60,8 +70,8 @@ namespace NorthCinema.UI
             {
                 table.Rows.Add(ticketsList.Tickets[j].TicketId,
                     ticketsList.Tickets[j].TicketSession.FilmSession.FilmName,
-                    ticketsList.Tickets[j].Place.Row,
-                    ticketsList.Tickets[j].Place.PlaceNumber,
+                    ticketsList.Tickets[j].Place,
+                    ticketsList.Tickets[j].Row,
                     ticketsList.Tickets[j].AgeVisitor.ToShortDateString(),
                     ticketsList.Tickets[j].Price);
             }
@@ -87,6 +97,20 @@ namespace NorthCinema.UI
 
                 PriceInput.Text = dataGridViewTickets.Rows[indexRow].Cells[5].Value.ToString();
             }
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            statusTicketList.AddStatusTicketInList(statusTicketList.StatusTicketList.Count() + 1, user.UserId,
+                Convert.ToInt32(TicketInput.Text), "Продано", DatePicker.Value, TimePicker.Value.TimeOfDay);
+            ticketsList.AddTicketInList(ticketsList.Tickets.Count() + 1,
+                sessionList.Sessions.Find(x => x.FilmSession.FilmName == SessionInput.Text),
+                Convert.ToInt32(PlaceNumberInput.Text), Convert.ToInt32(RowInput.Text),
+                AgeVistorPicker.Value, Convert.ToInt32(PriceInput.Text));
+            WritingInDatabase writing = new WritingInDatabase();
+            writing.WriteInDatabase(ticketsList.Tickets.Last());
+            writing.WriteInDatabase(statusTicketList.StatusTicketList.Last());
+            LoadDataGridView();
         }
     }
 }

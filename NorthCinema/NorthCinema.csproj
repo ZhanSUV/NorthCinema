@@ -62,8 +62,10 @@
   <ItemGroup>
     <Compile Include="App\Logining.cs" />
     <Compile Include="Domain\Models\ListOfPlacesInHalls.cs" />
+    <Compile Include="Domain\Models\ListOfStatusTickets.cs" />
     <Compile Include="Domain\Models\ListOfTickets.cs" />
     <Compile Include="Domain\Models\ListOfTotalPercents.cs" />
+    <Compile Include="Domain\Models\StatusTicket.cs" />
     <Compile Include="Domain\Models\TotalPercent.cs" />
     <Compile Include="Infrastructure\DeletingFromDateBase.cs" />
     <Compile Include="Infrastructure\UpdatingDataBase.cs" />
@@ -73,12 +75,6 @@
     </Compile>
     <Compile Include="UI\fAdminConsoleUnit.Designer.cs">
       <DependentUpon>fAdminConsoleUnit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\fCalendar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\fCalendar.Designer.cs">
-      <DependentUpon>fCalendar.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\fCashierConsoleUnit.cs">
       <SubType>Form</SubType>
@@ -104,11 +100,11 @@
     <Compile Include="UI\fHalls.Designer.cs">
       <DependentUpon>fHalls.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\fProcents.cs">
+    <Compile Include="UI\fPercents.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\fProcents.Designer.cs">
-      <DependentUpon>fProcents.cs</DependentUpon>
+    <Compile Include="UI\fPercents.Designer.cs">
+      <DependentUpon>fPercents.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\fSessions.cs">
       <SubType>Form</SubType>
@@ -122,16 +118,6 @@
     <Compile Include="UI\fTickets.Designer.cs">
       <DependentUpon>fTickets.cs</DependentUpon>
     </Compile>
-    <Compile Include="Тесты\Domain\Country.cs" />
-    <Compile Include="Тесты\Domain\Employee.cs" />
-    <Compile Include="Тесты\Domain\Format.cs" />
-    <Compile Include="Тесты\Domain\Genre.cs" />
-    <Compile Include="Тесты\Domain\Job.cs" />
-    <Compile Include="Тесты\Domain\Percentage.cs" />
-    <Compile Include="Тесты\Domain\Sessions.cs" />
-    <Compile Include="Тесты\Domain\StatusTicket.cs" />
-    <Compile Include="Тесты\Domain\TicketSale.cs" />
-    <Compile Include="Тесты\Domain\TotalPercent.cs" />
     <Compile Include="Domain\Models\Film.cs" />
     <Compile Include="Domain\Models\Hall.cs" />
     <Compile Include="Domain\Models\ListOfCashiers.cs" />
@@ -175,9 +161,6 @@
     <EmbeddedResource Include="UI\fAdminConsoleUnit.resx">
       <DependentUpon>fAdminConsoleUnit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\fCalendar.resx">
-      <DependentUpon>fCalendar.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\fCashierConsoleUnit.resx">
       <DependentUpon>fCashierConsoleUnit.cs</DependentUpon>
     </EmbeddedResource>
@@ -196,8 +179,8 @@
     <EmbeddedResource Include="UI\fMainMenu.resx">
       <DependentUpon>fMainMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\fProcents.resx">
-      <DependentUpon>fProcents.cs</DependentUpon>
+    <EmbeddedResource Include="UI\fPercents.resx">
+      <DependentUpon>fPercents.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\fSessions.resx">
       <DependentUpon>fSessions.cs</DependentUpon>
@@ -219,9 +202,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Тесты\Service\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Cinema.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

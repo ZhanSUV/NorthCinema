@@ -8,17 +8,19 @@ namespace NorthCinema.Domain.Models
 {
     public class Ticket
     {
-        public Ticket(int ticketId, Session ticketSession, PlaceInHall place, DateTime ageVisitor, double price)
+        public Ticket(int ticketId, Session ticketSession, int row, int place, DateTime ageVisitor, double price)
         {
             TicketId = ticketId;
             TicketSession = ticketSession;
+            Row = row;
             Place = place;
             AgeVisitor = ageVisitor;
             Price = price;
         }
         public int TicketId { get; set; }
         public Session TicketSession { get; set; }
-        public PlaceInHall Place { get; set; }
+        public int Place { get; set; }
+        public int Row { get; set; }
         public DateTime AgeVisitor { get; set; }
         public double Price { get; set; }
 

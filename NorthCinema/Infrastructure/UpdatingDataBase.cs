@@ -142,5 +142,46 @@ namespace NorthCinema.Infrastructure
                 command.ExecuteNonQuery();
             }
         }
+        public void UpdateInDatabase(StatusTicket statusTicket)
+        {
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                SqlCommand command = new SqlCommand(
+                ("UPDATE [STATUSTICKET]" +
+                "SET STATUS_ID = @STATUS_ID, USER_ID = @USER_ID, TICKET_ID = @TICKET_ID, " +
+                "STATUS_TICKET = @STATUS_TICKET, DATE_CHANGE = @DATE_CHANGE, TIME_CHANGE = @TIME_CHANGE"
+                + "WHERE @STATUS_ID = STATUS_ID;"),
+                connectToDateBase);
+                command.Connection.Open();
+                command.Parameters.AddWithValue("@STATUS_ID", statusTicket.StatusId);
+                command.Parameters.AddWithValue("@USER_ID", statusTicket.UserId);
+                command.Parameters.AddWithValue("@TICKET_ID", statusTicket.TicketId);
+                command.Parameters.AddWithValue("@STATUS_TICKET", statusTicket.StatusOfTicket);
+                command.Parameters.AddWithValue("@DATE_CHANGE", statusTicket.DateChange);
+                command.Parameters.AddWithValue("@TIME_CHANGE", statusTicket.TimeChange);
+                command.ExecuteNonQuery();
+            }
+        }
+        public void UpdateInDatabase(Ticket ticket)
+        {
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                SqlCommand command = new SqlCommand(
+                ("UPDATE [TICKETSALES] " +
+                 "SET SESSION_ID = @SESSION_ID, PLACE_ID = @PLACE_ID, " +
+                 "AGE_VISITOR = @AGE_VISITOR, TOTAL_COST = @TOTAL_COST " +
+                 "WHERE TICKET_ID = @TICKET_ID;"),
+                connectToDateBase);
+                command.Connection.Open();
+                command.Parameters.AddWithValue("@TICKET_ID", ticket.TicketId);
+                command.Parameters.AddWithValue("@SESSION_ID", ticket.TicketSession.SessionId);
+                command.Parameters.AddWithValue("@PLACE_ID", ticket.Place);
+                command.Parameters.AddWithValue("@AGE_VISITOR", ticket.AgeVisitor);
+                command.Parameters.AddWithValue("@TOTAL_COST", ticket.Price);
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }
