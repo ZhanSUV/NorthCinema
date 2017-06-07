@@ -103,5 +103,18 @@ namespace NorthCinema.Infrastructure
                 command.ExecuteNonQuery();
             }
         }
+        public void DeleteFromDatabase(TotalPercent totalPercent)
+        {
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                SqlCommand command = new SqlCommand(
+                ("DELETE FROM [TOTAL_PERCENTS] WHERE @PERCENT_ID = PERCENT_ID;"),
+                connectToDateBase);
+                command.Connection.Open();
+                command.Parameters.AddWithValue("@PERCENT_ID", totalPercent.PercentId);
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }

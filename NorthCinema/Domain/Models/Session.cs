@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NorthCinema.Domain.Models
 {
-    class Session
+    public class Session
     {
         public Session(int sessionId,Film filmSession, Hall hallSession, DateTime dateSession, TimeSpan timeSession)
         {

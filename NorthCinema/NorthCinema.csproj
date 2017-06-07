@@ -63,6 +63,8 @@
     <Compile Include="App\Logining.cs" />
     <Compile Include="Domain\Models\ListOfPlacesInHalls.cs" />
     <Compile Include="Domain\Models\ListOfTickets.cs" />
+    <Compile Include="Domain\Models\ListOfTotalPercents.cs" />
+    <Compile Include="Domain\Models\TotalPercent.cs" />
     <Compile Include="Infrastructure\DeletingFromDateBase.cs" />
     <Compile Include="Infrastructure\UpdatingDataBase.cs" />
     <Compile Include="Infrastructure\WritingInDatabase.cs" />

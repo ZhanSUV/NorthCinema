@@ -31,6 +31,7 @@
             this.FilmButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
             this.TicketButton = new System.Windows.Forms.Button();
+            this.SessionButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // FilmButton
@@ -55,7 +56,7 @@
             // 
             // TicketButton
             // 
-            this.TicketButton.Location = new System.Drawing.Point(109, 78);
+            this.TicketButton.Location = new System.Drawing.Point(109, 97);
             this.TicketButton.Name = "TicketButton";
             this.TicketButton.Size = new System.Drawing.Size(75, 23);
             this.TicketButton.TabIndex = 2;
@@ -63,11 +64,22 @@
             this.TicketButton.UseVisualStyleBackColor = true;
             this.TicketButton.Click += new System.EventHandler(this.TicketButton_Click);
             // 
+            // SessionButton
+            // 
+            this.SessionButton.Location = new System.Drawing.Point(109, 68);
+            this.SessionButton.Name = "SessionButton";
+            this.SessionButton.Size = new System.Drawing.Size(75, 23);
+            this.SessionButton.TabIndex = 3;
+            this.SessionButton.Text = "Сеансы";
+            this.SessionButton.UseVisualStyleBackColor = true;
+            this.SessionButton.Click += new System.EventHandler(this.SessionButton_Click);
+            // 
             // fCashierConsoleUnit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.SessionButton);
             this.Controls.Add(this.TicketButton);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.FilmButton);
@@ -83,5 +95,6 @@
         private System.Windows.Forms.Button FilmButton;
         private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.Button TicketButton;
+        private System.Windows.Forms.Button SessionButton;
     }
 }

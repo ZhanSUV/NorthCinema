@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace NorthCinema.Domain.Models
 {
-    class Ticket
+    public class Ticket
     {
-        public Ticket(int ticketId, Session ticketSession, PlaceInHall place, DateTime ageVisitor, int price)
+        public Ticket(int ticketId, Session ticketSession, PlaceInHall place, DateTime ageVisitor, double price)
         {
             TicketId = ticketId;
             TicketSession = ticketSession;
@@ -20,7 +20,7 @@ namespace NorthCinema.Domain.Models
         public Session TicketSession { get; set; }
         public PlaceInHall Place { get; set; }
         public DateTime AgeVisitor { get; set; }
-        public int Price { get; set; }
+        public double Price { get; set; }
 
     }
 }

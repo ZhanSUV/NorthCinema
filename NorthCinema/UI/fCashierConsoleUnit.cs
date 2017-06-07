@@ -39,5 +39,13 @@ namespace NorthCinema.UI
             console.ShowDialog();
             this.Show();
         }
+
+        private void SessionButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            fSessions console = new fSessions(cashier);
+            console.ShowDialog();
+            this.Show();
+        }
     }
 }

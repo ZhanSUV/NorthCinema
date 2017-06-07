@@ -46,6 +46,7 @@
             this.FilterNameFilmInput = new System.Windows.Forms.TextBox();
             this.FindButton = new System.Windows.Forms.Button();
             this.FilterNameFilmWithDate = new System.Windows.Forms.Button();
+            this.ResetFilter = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSessions)).BeginInit();
             this.SuspendLayout();
             // 
@@ -190,7 +191,7 @@
             // SearchingNameFilm
             // 
             this.SearchingNameFilm.AutoSize = true;
-            this.SearchingNameFilm.Location = new System.Drawing.Point(582, 33);
+            this.SearchingNameFilm.Location = new System.Drawing.Point(582, 1);
             this.SearchingNameFilm.Name = "SearchingNameFilm";
             this.SearchingNameFilm.Size = new System.Drawing.Size(100, 13);
             this.SearchingNameFilm.TabIndex = 21;
@@ -198,14 +199,14 @@
             // 
             // FilterNameFilmInput
             // 
-            this.FilterNameFilmInput.Location = new System.Drawing.Point(585, 49);
+            this.FilterNameFilmInput.Location = new System.Drawing.Point(585, 17);
             this.FilterNameFilmInput.Name = "FilterNameFilmInput";
             this.FilterNameFilmInput.Size = new System.Drawing.Size(164, 20);
             this.FilterNameFilmInput.TabIndex = 22;
             // 
             // FindButton
             // 
-            this.FindButton.Location = new System.Drawing.Point(585, 77);
+            this.FindButton.Location = new System.Drawing.Point(585, 45);
             this.FindButton.Name = "FindButton";
             this.FindButton.Size = new System.Drawing.Size(164, 23);
             this.FindButton.TabIndex = 23;
@@ -215,7 +216,7 @@
             // 
             // FilterNameFilmWithDate
             // 
-            this.FilterNameFilmWithDate.Location = new System.Drawing.Point(585, 104);
+            this.FilterNameFilmWithDate.Location = new System.Drawing.Point(585, 72);
             this.FilterNameFilmWithDate.Name = "FilterNameFilmWithDate";
             this.FilterNameFilmWithDate.Size = new System.Drawing.Size(164, 23);
             this.FilterNameFilmWithDate.TabIndex = 24;
@@ -223,11 +224,22 @@
             this.FilterNameFilmWithDate.UseVisualStyleBackColor = true;
             this.FilterNameFilmWithDate.Click += new System.EventHandler(this.FilterNameFilmWithDate_Click);
             // 
+            // ResetFilter
+            // 
+            this.ResetFilter.Location = new System.Drawing.Point(585, 102);
+            this.ResetFilter.Name = "ResetFilter";
+            this.ResetFilter.Size = new System.Drawing.Size(164, 23);
+            this.ResetFilter.TabIndex = 25;
+            this.ResetFilter.Text = "Сброс фильтра";
+            this.ResetFilter.UseVisualStyleBackColor = true;
+            this.ResetFilter.Click += new System.EventHandler(this.ResetFilter_Click);
+            // 
             // fSessions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(799, 432);
+            this.Controls.Add(this.ResetFilter);
             this.Controls.Add(this.FilterNameFilmWithDate);
             this.Controls.Add(this.FindButton);
             this.Controls.Add(this.FilterNameFilmInput);
@@ -274,5 +286,6 @@
         private System.Windows.Forms.TextBox FilterNameFilmInput;
         private System.Windows.Forms.Button FindButton;
         private System.Windows.Forms.Button FilterNameFilmWithDate;
+        private System.Windows.Forms.Button ResetFilter;
     }
 }

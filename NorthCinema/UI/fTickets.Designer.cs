@@ -31,18 +31,24 @@
             this.dataGridViewTickets = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.SessionLabel = new System.Windows.Forms.Label();
-            this.TicketStatusLabel = new System.Windows.Forms.Label();
             this.PriceLabel = new System.Windows.Forms.Label();
             this.SessionInput = new System.Windows.Forms.TextBox();
-            this.DateOfEditInput = new System.Windows.Forms.TextBox();
-            this.TicketStatusInput = new System.Windows.Forms.TextBox();
             this.PriceInput = new System.Windows.Forms.TextBox();
             this.AddButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.UpdateButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
-            this.DateOfLastEdit = new System.Windows.Forms.Label();
+            this.dataGridViewPercents = new System.Windows.Forms.DataGridView();
+            this.TicketLabel = new System.Windows.Forms.Label();
+            this.RowLabel = new System.Windows.Forms.Label();
+            this.PlaceNumberLabel = new System.Windows.Forms.Label();
+            this.TicketInput = new System.Windows.Forms.TextBox();
+            this.RowInput = new System.Windows.Forms.TextBox();
+            this.PlaceNumberInput = new System.Windows.Forms.TextBox();
+            this.AgeVisitorLabel = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTickets)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPercents)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewTickets
@@ -51,7 +57,7 @@
             this.dataGridViewTickets.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewTickets.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewTickets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTickets.Location = new System.Drawing.Point(21, 136);
+            this.dataGridViewTickets.Location = new System.Drawing.Point(21, 164);
             this.dataGridViewTickets.MultiSelect = false;
             this.dataGridViewTickets.Name = "dataGridViewTickets";
             this.dataGridViewTickets.ReadOnly = true;
@@ -59,6 +65,7 @@
             this.dataGridViewTickets.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dataGridViewTickets.Size = new System.Drawing.Size(369, 168);
             this.dataGridViewTickets.TabIndex = 0;
+            this.dataGridViewTickets.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTickets_CellClick);
             // 
             // label2
             // 
@@ -71,25 +78,16 @@
             // SessionLabel
             // 
             this.SessionLabel.AutoSize = true;
-            this.SessionLabel.Location = new System.Drawing.Point(18, 10);
+            this.SessionLabel.Location = new System.Drawing.Point(19, 34);
             this.SessionLabel.Name = "SessionLabel";
             this.SessionLabel.Size = new System.Drawing.Size(38, 13);
             this.SessionLabel.TabIndex = 3;
             this.SessionLabel.Text = "Сеанс";
             // 
-            // TicketStatusLabel
-            // 
-            this.TicketStatusLabel.AutoSize = true;
-            this.TicketStatusLabel.Location = new System.Drawing.Point(18, 80);
-            this.TicketStatusLabel.Name = "TicketStatusLabel";
-            this.TicketStatusLabel.Size = new System.Drawing.Size(79, 13);
-            this.TicketStatusLabel.TabIndex = 4;
-            this.TicketStatusLabel.Text = "Статус билета";
-            // 
             // PriceLabel
             // 
             this.PriceLabel.AutoSize = true;
-            this.PriceLabel.Location = new System.Drawing.Point(18, 110);
+            this.PriceLabel.Location = new System.Drawing.Point(19, 107);
             this.PriceLabel.Name = "PriceLabel";
             this.PriceLabel.Size = new System.Drawing.Size(33, 13);
             this.PriceLabel.TabIndex = 5;
@@ -97,35 +95,21 @@
             // 
             // SessionInput
             // 
-            this.SessionInput.Location = new System.Drawing.Point(145, 3);
+            this.SessionInput.Location = new System.Drawing.Point(113, 31);
             this.SessionInput.Name = "SessionInput";
             this.SessionInput.Size = new System.Drawing.Size(100, 20);
             this.SessionInput.TabIndex = 7;
             // 
-            // DateOfEditInput
-            // 
-            this.DateOfEditInput.Location = new System.Drawing.Point(145, 38);
-            this.DateOfEditInput.Name = "DateOfEditInput";
-            this.DateOfEditInput.Size = new System.Drawing.Size(100, 20);
-            this.DateOfEditInput.TabIndex = 8;
-            // 
-            // TicketStatusInput
-            // 
-            this.TicketStatusInput.Location = new System.Drawing.Point(145, 73);
-            this.TicketStatusInput.Name = "TicketStatusInput";
-            this.TicketStatusInput.Size = new System.Drawing.Size(100, 20);
-            this.TicketStatusInput.TabIndex = 9;
-            // 
             // PriceInput
             // 
-            this.PriceInput.Location = new System.Drawing.Point(145, 107);
+            this.PriceInput.Location = new System.Drawing.Point(113, 107);
             this.PriceInput.Name = "PriceInput";
             this.PriceInput.Size = new System.Drawing.Size(100, 20);
             this.PriceInput.TabIndex = 10;
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(21, 310);
+            this.AddButton.Location = new System.Drawing.Point(21, 338);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(75, 23);
             this.AddButton.TabIndex = 11;
@@ -134,7 +118,7 @@
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(315, 310);
+            this.DeleteButton.Location = new System.Drawing.Point(315, 338);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(75, 23);
             this.DeleteButton.TabIndex = 12;
@@ -143,7 +127,7 @@
             // 
             // UpdateButton
             // 
-            this.UpdateButton.Location = new System.Drawing.Point(170, 310);
+            this.UpdateButton.Location = new System.Drawing.Point(170, 338);
             this.UpdateButton.Name = "UpdateButton";
             this.UpdateButton.Size = new System.Drawing.Size(75, 23);
             this.UpdateButton.TabIndex = 13;
@@ -152,7 +136,7 @@
             // 
             // ExitButton
             // 
-            this.ExitButton.Location = new System.Drawing.Point(315, 352);
+            this.ExitButton.Location = new System.Drawing.Point(315, 380);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(75, 23);
             this.ExitButton.TabIndex = 14;
@@ -160,14 +144,82 @@
             this.ExitButton.UseVisualStyleBackColor = true;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
-            // DateOfLastEdit
+            // dataGridViewPercents
             // 
-            this.DateOfLastEdit.AutoSize = true;
-            this.DateOfLastEdit.Location = new System.Drawing.Point(18, 45);
-            this.DateOfLastEdit.Name = "DateOfLastEdit";
-            this.DateOfLastEdit.Size = new System.Drawing.Size(122, 13);
-            this.DateOfLastEdit.TabIndex = 15;
-            this.DateOfLastEdit.Text = "Дата посл. изменения";
+            this.dataGridViewPercents.AllowUserToAddRows = false;
+            this.dataGridViewPercents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPercents.Location = new System.Drawing.Point(426, 164);
+            this.dataGridViewPercents.MultiSelect = false;
+            this.dataGridViewPercents.Name = "dataGridViewPercents";
+            this.dataGridViewPercents.ReadOnly = true;
+            this.dataGridViewPercents.RowHeadersVisible = false;
+            this.dataGridViewPercents.Size = new System.Drawing.Size(324, 168);
+            this.dataGridViewPercents.TabIndex = 16;
+            // 
+            // TicketLabel
+            // 
+            this.TicketLabel.AutoSize = true;
+            this.TicketLabel.Location = new System.Drawing.Point(19, 9);
+            this.TicketLabel.Name = "TicketLabel";
+            this.TicketLabel.Size = new System.Drawing.Size(37, 13);
+            this.TicketLabel.TabIndex = 17;
+            this.TicketLabel.Text = "Билет";
+            // 
+            // RowLabel
+            // 
+            this.RowLabel.AutoSize = true;
+            this.RowLabel.Location = new System.Drawing.Point(19, 60);
+            this.RowLabel.Name = "RowLabel";
+            this.RowLabel.Size = new System.Drawing.Size(26, 13);
+            this.RowLabel.TabIndex = 18;
+            this.RowLabel.Text = "Ряд";
+            // 
+            // PlaceNumberLabel
+            // 
+            this.PlaceNumberLabel.AutoSize = true;
+            this.PlaceNumberLabel.Location = new System.Drawing.Point(19, 81);
+            this.PlaceNumberLabel.Name = "PlaceNumberLabel";
+            this.PlaceNumberLabel.Size = new System.Drawing.Size(39, 13);
+            this.PlaceNumberLabel.TabIndex = 19;
+            this.PlaceNumberLabel.Text = "Место";
+            // 
+            // TicketInput
+            // 
+            this.TicketInput.Location = new System.Drawing.Point(113, 6);
+            this.TicketInput.Name = "TicketInput";
+            this.TicketInput.Size = new System.Drawing.Size(100, 20);
+            this.TicketInput.TabIndex = 20;
+            // 
+            // RowInput
+            // 
+            this.RowInput.Location = new System.Drawing.Point(113, 57);
+            this.RowInput.Name = "RowInput";
+            this.RowInput.Size = new System.Drawing.Size(100, 20);
+            this.RowInput.TabIndex = 21;
+            // 
+            // PlaceNumberInput
+            // 
+            this.PlaceNumberInput.Location = new System.Drawing.Point(113, 81);
+            this.PlaceNumberInput.Name = "PlaceNumberInput";
+            this.PlaceNumberInput.Size = new System.Drawing.Size(100, 20);
+            this.PlaceNumberInput.TabIndex = 22;
+            // 
+            // AgeVisitorLabel
+            // 
+            this.AgeVisitorLabel.Location = new System.Drawing.Point(19, 133);
+            this.AgeVisitorLabel.Name = "AgeVisitorLabel";
+            this.AgeVisitorLabel.Size = new System.Drawing.Size(100, 28);
+            this.AgeVisitorLabel.TabIndex = 23;
+            this.AgeVisitorLabel.Text = "Дата рождения посетителя";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(113, 133);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.ShowUpDown = true;
+            this.dateTimePicker1.Size = new System.Drawing.Size(100, 20);
+            this.dateTimePicker1.TabIndex = 25;
             // 
             // fTickets
             // 
@@ -176,17 +228,22 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(771, 413);
-            this.Controls.Add(this.DateOfLastEdit);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.AgeVisitorLabel);
+            this.Controls.Add(this.PlaceNumberInput);
+            this.Controls.Add(this.RowInput);
+            this.Controls.Add(this.TicketInput);
+            this.Controls.Add(this.PlaceNumberLabel);
+            this.Controls.Add(this.RowLabel);
+            this.Controls.Add(this.TicketLabel);
+            this.Controls.Add(this.dataGridViewPercents);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.UpdateButton);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.PriceInput);
-            this.Controls.Add(this.TicketStatusInput);
-            this.Controls.Add(this.DateOfEditInput);
             this.Controls.Add(this.SessionInput);
             this.Controls.Add(this.PriceLabel);
-            this.Controls.Add(this.TicketStatusLabel);
             this.Controls.Add(this.SessionLabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridViewTickets);
@@ -194,6 +251,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fTickets";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTickets)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPercents)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,16 +262,21 @@
         private System.Windows.Forms.DataGridView dataGridViewTickets;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label SessionLabel;
-        private System.Windows.Forms.Label TicketStatusLabel;
         private System.Windows.Forms.Label PriceLabel;
         private System.Windows.Forms.TextBox SessionInput;
-        private System.Windows.Forms.TextBox DateOfEditInput;
-        private System.Windows.Forms.TextBox TicketStatusInput;
         private System.Windows.Forms.TextBox PriceInput;
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.Button UpdateButton;
         private System.Windows.Forms.Button ExitButton;
-        private System.Windows.Forms.Label DateOfLastEdit;
+        private System.Windows.Forms.DataGridView dataGridViewPercents;
+        private System.Windows.Forms.Label TicketLabel;
+        private System.Windows.Forms.Label RowLabel;
+        private System.Windows.Forms.Label PlaceNumberLabel;
+        private System.Windows.Forms.TextBox TicketInput;
+        private System.Windows.Forms.TextBox RowInput;
+        private System.Windows.Forms.TextBox PlaceNumberInput;
+        private System.Windows.Forms.Label AgeVisitorLabel;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

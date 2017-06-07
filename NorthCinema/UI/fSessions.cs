@@ -20,11 +20,13 @@ namespace NorthCinema.UI
         ListOfHalls hallList;
         List<int> filmIds = new List<int>();
         List<int> hallIds = new List<int>();
-        object number;  
+        //object number;  
+        object user;
         BindingSource sourceData = new BindingSource();
         int indexRow;
         public fSessions(object user)
         {
+            this.user = user;
             InitializeComponent();
             if (user.GetType() == typeof(AdminUser))
             {
@@ -55,15 +57,20 @@ namespace NorthCinema.UI
                 {
                     filmIds.Add(i.FilmSession.FilmId);
                     hallIds.Add(i.HallSession.HallId);
-
                 }
-                sourceData.DataSource = sessionsList.Sessions;
-                dataGridViewSessions.DataSource = sourceData;
                 for (int i = 0; i < sourceData.Count; i++)
                 {
                     dataGridViewSessions[2, i].Value = filmIds[i];
                 }
-                dataGridViewSessions.Refresh();
+                LoadDataGridView();
+                filmList = reading.ReadFilms();
+                hallList = reading.ReadHalls();
+                FilmComboBox.DataSource = filmList.Films;
+                FilmComboBox.DisplayMember = "FilmName";
+                FilmComboBox.ValueMember = "FilmId";
+                HallComboBox.DataSource = hallList.Halls;
+                HallComboBox.DisplayMember = "HallName";
+                HallComboBox.ValueMember = "HallId";
                 AddButton.Visible = false;
                 UpdateButton.Visible = false;
                 DeleteButton.Visible = false;
@@ -84,6 +91,14 @@ namespace NorthCinema.UI
                 HallComboBox.Text = dataGridViewSessions.Rows[indexRow].Cells[2].Value.ToString();
                 DateInputPicker.Value = Convert.ToDateTime(dataGridViewSessions.Rows[indexRow].Cells[3].Value.ToString());
                 TimeInputPicker.Value = Convert.ToDateTime(dataGridViewSessions.Rows[indexRow].Cells[4].Value.ToString());
+                if (user.GetType() == typeof(CashierUser))
+                {
+                    this.Hide();
+                    Session session = sessionsList.Sessions[indexRow];
+                    fHalls console = new fHalls(user, session);
+                    console.ShowDialog();
+                    this.Show();
+                }
             }
         }
 
@@ -159,6 +174,11 @@ namespace NorthCinema.UI
             string nameFilm = FilterNameFilmInput.Text;
             (dataGridViewSessions.DataSource as DataTable).DefaultView.RowFilter = 
                 string.Format("Дата = '{0}' and Фильм = '{1}'", date, nameFilm);
+        }
+
+        private void ResetFilter_Click(object sender, EventArgs e)
+        {
+            LoadDataGridView();
         }
     }
 }

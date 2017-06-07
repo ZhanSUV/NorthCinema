@@ -256,5 +256,29 @@ namespace NorthCinema.Infrastructure
             ListOfTickets tickets = new ListOfTickets(ticketsList);
             return tickets;
         }
+        public ListOfTotalPercents ReadTotalPercents()
+        {
+            List<TotalPercent> totalPercentList = new List<TotalPercent>();
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                SqlCommand command = new SqlCommand(
+                "SELECT PERCENT_ID, TICKET_ID FROM [TOTALPERCENTS];",
+                connectToDateBase);
+                connectToDateBase.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        TotalPercent totalPercent = new TotalPercent(reader.GetInt32(0), reader.GetInt32(1));
+                        totalPercentList.Add(totalPercent);
+                    }
+                }
+                reader.Close();
+            }
+            ListOfTotalPercents totalPercents = new ListOfTotalPercents(totalPercentList);
+            return totalPercents;
+        }
     }
 }

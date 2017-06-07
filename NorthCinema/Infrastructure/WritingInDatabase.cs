@@ -135,5 +135,20 @@ namespace NorthCinema.Infrastructure
                 command.ExecuteNonQuery();
             }
         }
+        public void WriteInDatabase(TotalPercent totalPercent)
+        {
+            SqlConnection connectToDateBase = new SqlConnection(pathOfDataBase);
+            using (connectToDateBase)
+            {
+                SqlCommand command = new SqlCommand(
+                ("INSERT INTO [TOTALPERCENTS] (TICKET_ID, PERCENT_ID)" +
+                "VALUES (@TICKET_ID, @PERCENT_ID);"),
+                connectToDateBase);
+                command.Connection.Open();
+                command.Parameters.AddWithValue("@TICKET_ID", totalPercent.PercentId);
+                command.Parameters.AddWithValue("@PERCENT_ID", totalPercent.TicketId);
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NorthCinema.Domain.Models
 {
-    class ListOfTickets
+    public class ListOfTickets
     {
         public ListOfTickets(List<Ticket> ticketList)
         {

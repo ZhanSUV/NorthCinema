@@ -15,6 +15,8 @@ namespace NorthCinema.UI
 {
     public partial class fHalls : Form
     {
+        object user;
+        Session session;
         Button[][] buttonArray = new Button[1][];
         ListOfPlacesInHalls placesList;
         ListOfHalls hallsList;
@@ -25,6 +27,7 @@ namespace NorthCinema.UI
             InitializeComponent();
             if (user.GetType() == typeof(AdminUser))
             {
+                this.user = user;
                 //класс, считывающий данные из бд и это в List засунуть; 
                 ReadingFromDateBase reading = new ReadingFromDateBase();
                 hallsList = reading.ReadHalls();
@@ -43,6 +46,7 @@ namespace NorthCinema.UI
             }
             else
             {
+                this.user = user;
                 //класс, считывающий данные из бд и это в List засунуть; 
                 ReadingFromDateBase reading = new ReadingFromDateBase();
                 hallsList = reading.ReadHalls();
@@ -58,7 +62,30 @@ namespace NorthCinema.UI
                 //LoadSchemeOfHall();
             }
         }
-
+        public fHalls(object user, Session session)
+        {
+            InitializeComponent();
+            this.user = user;
+            this.session = session;
+            if (user.GetType() == typeof(CashierUser))
+            {
+                Hall currentHall = session.HallSession;
+                sourceData.DataSource = currentHall;
+                dataGridViewHalls.DataSource = sourceData;
+                dataGridViewHalls.Columns[0].Visible = false;
+                dataGridViewHalls.Columns[1].HeaderText = "Название";
+                dataGridViewHalls.Columns[2].HeaderText = "Кол-во мест";
+                dataGridViewHalls.Columns[3].HeaderText = "Кол-во мест в ряду";
+                dataGridViewHalls.Visible = false;
+                foreach (Control i in this.Controls)
+                {
+                    i.Visible = false;
+                }
+                HallPlaces.Visible = true;
+                ExitButton.Visible = true;
+                LoadSchemeOfHall(session.HallSession.SeatingCapacity, session.HallSession.PlacesInRow);
+            }
+        }
         private void ExitButton_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -151,7 +178,7 @@ namespace NorthCinema.UI
             if (leftPlaces != 0)
             {
                 notEven = true;
-                buttonArray = new Button[(seatingCapacity / placesInRowLimit + 1)][];
+                buttonArray = new Button[(seatingCapacity / placesInRowLimit) + 1][];
             }
             else
             {
@@ -230,6 +257,14 @@ namespace NorthCinema.UI
             Button clickedButton = (Button)sender;
             RowInput.Text = clickedButton.Name;
             PlaceInput.Text = clickedButton.Text;
+            if (user.GetType() == typeof(CashierUser))
+            {
+                this.Hide();
+                fTickets console = new fTickets(session, Convert.ToInt32(RowInput.Text), 
+                    Convert.ToInt32(PlaceInput.Text), session.FilmSession.Price);
+                console.ShowDialog();
+                this.Show();
+            }
         }
         private void ClearAllTextBoxesAndGroupBox()
         {

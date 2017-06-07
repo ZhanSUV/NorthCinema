@@ -7,7 +7,7 @@ using NorthCinema.Domain.Users;
 
 namespace NorthCinema.Domain.Models
 {
-    class ListOfCashiers
+    public class ListOfCashiers
     {
         public ListOfCashiers(List<Users.CashierUser> cashiers)
         {

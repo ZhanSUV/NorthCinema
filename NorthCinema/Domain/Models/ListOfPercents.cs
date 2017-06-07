@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NorthCinema.Domain.Models
 {
-    class ListOfPercents
+    public class ListOfPercents
     {
         public ListOfPercents(List<Percent> percents)
         {

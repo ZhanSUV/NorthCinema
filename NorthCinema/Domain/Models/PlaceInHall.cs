@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NorthCinema.Domain.Models
 {
-    class PlaceInHall
+    public class PlaceInHall
     {
         public PlaceInHall(int placeId, int hallId, int row, int placeNumber)
         {
