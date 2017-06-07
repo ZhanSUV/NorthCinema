@@ -132,8 +132,6 @@
     <Compile Include="Тесты\Domain\StatusTicket.cs" />
     <Compile Include="Тесты\Domain\TicketSale.cs" />
     <Compile Include="Тесты\Domain\TotalPercent.cs" />
-    <Compile Include="Domain\Models\CalendarOfDaysOfSessions.cs" />
-    <Compile Include="Domain\Models\DayOfSessions.cs" />
     <Compile Include="Domain\Models\Film.cs" />
     <Compile Include="Domain\Models\Hall.cs" />
     <Compile Include="Domain\Models\ListOfCashiers.cs" />

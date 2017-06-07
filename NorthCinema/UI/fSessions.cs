@@ -20,7 +20,6 @@ namespace NorthCinema.UI
         ListOfHalls hallList;
         List<int> filmIds = new List<int>();
         List<int> hallIds = new List<int>();
-        //object number;  
         object user;
         BindingSource sourceData = new BindingSource();
         int indexRow;
@@ -50,7 +49,6 @@ namespace NorthCinema.UI
             }
             else
             {
-                //класс, считывающий данные из бд и это в List засунуть; 
                 ReadingFromDateBase reading = new ReadingFromDateBase();
                 sessionsList = reading.ReadSessions();
                 foreach (var i in sessionsList.Sessions)
@@ -162,8 +160,7 @@ namespace NorthCinema.UI
         }
 
         private void FindButton_Click(object sender, EventArgs e)
-        {
-            //(dataGridViewSessions.DataSource as DataTable).DefaultView.RowFilter = string.Empty;
+        { 
             string nameFilm = FilterNameFilmInput.Text;
             (dataGridViewSessions.DataSource as DataTable).DefaultView.RowFilter = string.Format("Фильм = '{0}'", nameFilm);
         }

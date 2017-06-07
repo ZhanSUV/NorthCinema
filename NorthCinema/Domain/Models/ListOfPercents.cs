@@ -13,25 +13,6 @@ namespace NorthCinema.Domain.Models
             Percents = percents;
         }
         public List<Percent> Percents { get; set; }
-        public static void AddPercent<T>(T obj)
-           where T : Users.AdminUser
-        {
-
-        }
-        public static void EditPercent<T>(T obj)
-           where T : Users.AdminUser
-        {
-
-        }
-        public static void DeletePercent<T>(T obj)
-           where T : Users.AdminUser
-        {
-
-        }
-        public static void ShowList()
-        {
-
-        }
         public void AddPercentInList(int percentId, string percentDescription, string percentType, int percentValue)
         {
             Percent percent = new Percent(percentId, percentDescription, percentType, percentValue);

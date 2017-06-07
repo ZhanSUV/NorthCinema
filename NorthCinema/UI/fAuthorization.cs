@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data;
 using NorthCinema.Domain.Users;
 using NorthCinema.App;
 
@@ -33,15 +32,15 @@ namespace NorthCinema.UI
             {
                 if (login.status.ToUpper() == "ADMIN")
                 {
-                    AdminUser admin = new AdminUser(login.userId, login.lastName, login.firstName,
-                        login.secondName, login.status, login.login, login.password);
+                    AdminUser admin = new AdminUser(login.UserId, login.LastName, login.FirstName,
+                        login.SecondName, login.status, login.Login, login.Password);
                     fAdminConsoleUnit adminConsole = new fAdminConsoleUnit(admin);
                     adminConsole.ShowDialog();
                 }
                 else if (login.status.ToUpper() == "CASHIER")
                 {
-                    CashierUser cashier = new CashierUser(login.userId, login.lastName, login.firstName,
-                        login.secondName, login.status, login.login, login.password);
+                    CashierUser cashier = new CashierUser(login.UserId, login.LastName, login.FirstName,
+                        login.SecondName, login.status, login.Login, login.Password);
                     fCashierConsoleUnit cashierConsole = new fCashierConsoleUnit(cashier);
                     cashierConsole.ShowDialog();
                 }

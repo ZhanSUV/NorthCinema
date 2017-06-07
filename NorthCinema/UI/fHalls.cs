@@ -28,7 +28,6 @@ namespace NorthCinema.UI
             if (user.GetType() == typeof(AdminUser))
             {
                 this.user = user;
-                //класс, считывающий данные из бд и это в List засунуть; 
                 ReadingFromDateBase reading = new ReadingFromDateBase();
                 hallsList = reading.ReadHalls();
                 for (int i = 0; i < hallsList.Halls.Count; i++)
@@ -42,12 +41,10 @@ namespace NorthCinema.UI
                 dataGridViewHalls.Columns[1].HeaderText = "Название";
                 dataGridViewHalls.Columns[2].HeaderText = "Кол-во мест";
                 dataGridViewHalls.Columns[3].HeaderText = "Кол-во мест в ряду";
-                //LoadSchemeOfHall();
             }
             else
             {
-                this.user = user;
-                //класс, считывающий данные из бд и это в List засунуть; 
+                this.user = user; 
                 ReadingFromDateBase reading = new ReadingFromDateBase();
                 hallsList = reading.ReadHalls();
                 sourceData.DataSource = hallsList.Halls;
@@ -59,7 +56,6 @@ namespace NorthCinema.UI
                 AddButton.Visible = false;
                 UpdateButton.Visible = false;
                 DeleteButton.Visible = false;
-                //LoadSchemeOfHall();
             }
         }
         public fHalls(object user, Session session)
@@ -250,7 +246,6 @@ namespace NorthCinema.UI
                 }
             }
             writing.WriteInDatabase(hall.Places);
-            //writing.WriteInDatabase(placesList);
         }
         private void SelectedPlaceInHall(object sender, EventArgs e)
         {
